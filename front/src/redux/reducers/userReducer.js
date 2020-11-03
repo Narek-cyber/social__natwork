@@ -58,6 +58,7 @@ function userReducer (state=userState, action) {
     if (action.type === 'showSuccess') {
         // temp.signin.login = '';
         // temp.signin.password = '';
+        temp.signin.isLoading = false;
         return temp;
     }
 
@@ -71,6 +72,7 @@ function userReducer (state=userState, action) {
         temp.signup.surname = '';
         temp.signup.login = '';
         temp.signup.password = '';
+        temp.signup.isLoading = false;
         return temp;
     }
 
@@ -137,6 +139,15 @@ function userReducer (state=userState, action) {
         return temp;
     }
 
+    if (action.type === 'loadLogin') {
+        temp.signin.isLoading = true;
+        return temp;
+    }
+
+    if (action.type === 'loadSignUp') {
+        temp.signup.isLoading = true;
+        return temp;
+    }
 
     if (action.type === 'logOut') {
         delete  sessionStorage.currentUser;

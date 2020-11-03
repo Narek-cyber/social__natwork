@@ -88,6 +88,7 @@ export function savePhoto() {
 
 export function validateLogin(props, data) {
     return function (dispatch) {
+        dispatch({type: 'loadLogin'});
         if (data.login === '') {
             dispatch(showError("Խնդրում ենք լրացնել login դաշտը"))
         }
@@ -124,6 +125,7 @@ export function validateLogin(props, data) {
 export function validateLoginEnter(props, e, data) {
     return function (dispatch) {
         if (e.key === 'Enter') {
+            dispatch({type: 'loadLogin'});
             if (data.login === '') {
                 dispatch(showError("Խնդրում ենք լրացնել login դաշտը"))
             }
@@ -160,6 +162,7 @@ export function validateLoginEnter(props, e, data) {
 
 export function validate(props, data) {
     return function (dispatch) {
+        dispatch({ type: 'loadSignUp' });
         let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
         if (!reg.test(String(data.password))) {
             dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
@@ -196,6 +199,7 @@ export function validate(props, data) {
 export function validateProfileEnter(props, e, data) {
     return function (dispatch) {
         if (e.key === 'Enter') {
+            dispatch({ type: 'loadSignUp' });
             let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
             if (!reg.test(String(data.password))) {
                 dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));

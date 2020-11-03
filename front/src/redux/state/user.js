@@ -2,7 +2,8 @@ export default {
     signin: {
         login: "l35@mail.ru",
         password: "asdAS!@123",   
-        error: ""
+        error: "",
+        isLoading: false
     },
 
     signup: {
@@ -10,7 +11,8 @@ export default {
         surname: "",
         login: "",
         password: "",
-        error: ""
+        error: "",
+        isLoading: false
     },
 
     profile: {

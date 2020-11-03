@@ -5,6 +5,16 @@ import { changeInputLogin, validateLogin, validateLoginEnter } from '../../redux
 import LoginHeader from '../LoginHeader';
 
 function Login(props) {
+    const spinner = props.user.signin.isLoading === false 
+        ? 
+            <span></span>
+        : 
+            <span   
+                className="spinner-border spinner-border-sm" 
+                role="status" 
+                aria-hidden="true">
+            </span>
+
     return (
         <div>
             <LoginHeader />
@@ -64,7 +74,8 @@ function Login(props) {
                                     name="button" 
                                     className="btn login_btn" 
                                     onClick={() => props.dispatch(validateLogin(props.history, props.user.signin ))}
-                                >   Login
+                                >   Login 
+                                    {/* {spinner} */}
                                 </button>
                             </div>
                         </form>
