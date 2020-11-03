@@ -1,0 +1,23 @@
+.profile-pic {
+    border-radius: 50%;
+    width: 198px;
+    height: 198px;
+    object-fit: cover;
+}
+
+.card {
+    width: 200px;
+    height: 260px;
+}
+
+.result {
+    background: yellowgreen;
+}
+
+.messanger {
+    width: 200px;
+}
+
+/* .messagesComment {
+    left: 950px
+} */
