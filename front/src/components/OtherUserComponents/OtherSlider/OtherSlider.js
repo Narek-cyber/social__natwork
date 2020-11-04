@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { changeOtherUserCommentInput, 
+import { 
+    changeOtherUserCommentInput, 
     closeOtherSlider, 
     nextOther, 
     prevOther, 

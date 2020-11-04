@@ -1,7 +1,11 @@
 import React from 'react';
 import './SignupComponent.css';
 import { connect } from 'react-redux';
-import { changeInput, validate, validateProfileEnter } from '../../redux/actions/user';
+import { 
+    changeInput, 
+    validate, 
+    validateProfileEnter 
+} from '../../redux/actions/user';
 import LoginHeader from '../LoginHeader';
 
 function Signup(props) {
@@ -104,6 +108,22 @@ function Signup(props) {
                                     name="button" 
                                     className="btn login_btn" 
                                     onClick={() => props.dispatch(validate(props.history, props.user.signup))}
+                                    // disabled={!props.user.signup.login}
+                                    disabled={
+                                        (
+                                                props.user.signup.login === '' 
+                                            || 
+                                                props.user.signup.password === ''
+                                            ||
+                                                props.user.signup.name === ''
+                                            ||
+                                                props.user.signup.surname === ''
+                                        ) 
+                                            ? 
+                                                true 
+                                            : 
+                                                false
+                                    }
                                 >   SignUp
                                     {/* {spinner} */}
                                 </button>

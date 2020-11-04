@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Post.css';
 import { connect } from 'react-redux';
 import ProfileHeader from '../ProfileHeader';
-import { searchPost, postGo } from '../../redux/actions/posts';
+import { 
+    searchPost, 
+    postGo 
+} from '../../redux/actions/posts';
 // import { GetProfile } from '../../redux/actions/user';
 
 function AddPost(props) {

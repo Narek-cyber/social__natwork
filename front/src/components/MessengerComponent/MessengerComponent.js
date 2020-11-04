@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './MessengerComponent.css';
 import ProfileHeader from '../ProfileHeader';
-import { AllUsers, GetProfile } from '../../redux/actions/user';
+import { 
+    AllUsers, 
+    GetProfile 
+} from '../../redux/actions/user';
 import { 
     showMessages, 
     myMessangerFriends, 
@@ -100,7 +103,7 @@ function Messenger(props) {
                                 <div id="expanded">
                                     <label>
                                         <i className="fa fa-facebook fa-fw" aria-hidden="true"></i>
-                                        </label>
+                                    </label>
                                     <input name="twitter" type="text" />
                                     <label>
                                         <i className="fa fa-twitter fa-fw" aria-hidden="true"></i>

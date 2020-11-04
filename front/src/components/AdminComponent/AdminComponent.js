@@ -3,7 +3,11 @@ import './AdminComponent.css';
 import { connect } from 'react-redux';
 import ProfileHeader from '../ProfileHeader';
 import { GetProfile } from '../../redux/actions/user';
-import { adminAllUsers, Block, Unblock } from '../../redux/actions/admin';
+import { 
+    adminAllUsers, 
+    Block, 
+    Unblock 
+} from '../../redux/actions/admin';
 import SearchComponent from '../SearchUsersComponent/SearchComponent';
 
 function Admin(props) {

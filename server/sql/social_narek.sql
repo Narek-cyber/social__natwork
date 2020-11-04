@@ -11,7 +11,7 @@
  Target Server Version : 100132
  File Encoding         : 65001
 
- Date: 26/10/2020 18:45:56
+ Date: 04/11/2020 15:05:40
 */
 
 SET NAMES utf8mb4;
@@ -81,7 +81,7 @@ CREATE TABLE `friends`  (
   INDEX `user2`(`user2`) USING BTREE,
   CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user1`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`user2`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 284 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 310 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of friends
@@ -90,6 +90,32 @@ INSERT INTO `friends` VALUES (278, 13, 14);
 INSERT INTO `friends` VALUES (279, 13, 16);
 INSERT INTO `friends` VALUES (282, 13, 11);
 INSERT INTO `friends` VALUES (283, 13, 15);
+INSERT INTO `friends` VALUES (284, 2, 1);
+INSERT INTO `friends` VALUES (285, 2, 3);
+INSERT INTO `friends` VALUES (286, 2, 4);
+INSERT INTO `friends` VALUES (287, 2, 5);
+INSERT INTO `friends` VALUES (288, 1, 6);
+INSERT INTO `friends` VALUES (289, 1, 7);
+INSERT INTO `friends` VALUES (290, 1, 8);
+INSERT INTO `friends` VALUES (291, 3, 4);
+INSERT INTO `friends` VALUES (292, 3, 5);
+INSERT INTO `friends` VALUES (293, 3, 6);
+INSERT INTO `friends` VALUES (294, 4, 8);
+INSERT INTO `friends` VALUES (295, 4, 5);
+INSERT INTO `friends` VALUES (296, 5, 11);
+INSERT INTO `friends` VALUES (297, 7, 6);
+INSERT INTO `friends` VALUES (298, 7, 12);
+INSERT INTO `friends` VALUES (299, 6, 17);
+INSERT INTO `friends` VALUES (300, 15, 7);
+INSERT INTO `friends` VALUES (301, 8, 16);
+INSERT INTO `friends` VALUES (302, 8, 15);
+INSERT INTO `friends` VALUES (303, 9, 17);
+INSERT INTO `friends` VALUES (304, 14, 9);
+INSERT INTO `friends` VALUES (305, 9, 10);
+INSERT INTO `friends` VALUES (306, 17, 12);
+INSERT INTO `friends` VALUES (307, 14, 12);
+INSERT INTO `friends` VALUES (308, 17, 4);
+INSERT INTO `friends` VALUES (309, 17, 5);
 
 -- ----------------------------
 -- Table structure for likes
@@ -109,7 +135,7 @@ CREATE TABLE `likes`  (
   CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user1`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`user2`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `likes_ibfk_3` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of likes
@@ -272,7 +298,7 @@ INSERT INTO `users` VALUES (9, 'Arman', 'Verdyan', 'l15@mail.ru', 'asdfAS!@124',
 INSERT INTO `users` VALUES (10, 'Minas', 'Minasyan', 'rt@mail.ru', '$2b$10$FE.9tTTaDeJLRisKYvZt9uw5gj6u588x5kbiwnS.m/unfGWvazpFG', 'c8fy0cs8ke05608x1597766912961cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png', 'c8fy09kgkddj6ydq', NULL, NULL, NULL, 0, 0, 0, 1);
 INSERT INTO `users` VALUES (11, 'Hayk', 'Hovhannisyan', 'x@mail.ru', '$2b$10$VibEQvVIhXxAsoeSblPQluql94a1QY7FoR965HqjPiX2.wFlWCH8y', 'c8fy0cs8ke059p10159776708504491-512.png', 'c8fy0fbskdf1av2z', NULL, NULL, NULL, 0, 0, 0, 1);
 INSERT INTO `users` VALUES (12, 'Armen', 'Verdyan', 'l13@mail.ru', '$2b$10$mVn.cTE6Nf1akaBSGWhZpuFSRyAIHfOjeQBNM12QTwgFsU0wU/VAC', 'c8fy0cs8ke05b1yl1597767148461download0.png', 'c8fy0bf0kdfvpi5i', 1596541702, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (13, 'Anahit', 'Verdyan', 'l35@mail.ru', '$2b$10$kKJP9wh/iLk9Xl1Dv6L.4e662HIs9xbPBXJ.hMv8g2o3xlL6XLnKu', 'ud0uh3qwkgcc49t11602857748133c8fy0cs8ke05ryur1597767937587Anahit.png', 'ud0uh9jgkglwklyo', 1603436298, 'c8fy07xskebap7s2159844133520211.png', 'c8fy07xskebasygz159844150976312.jpg', 0, 0, 0, 1);
+INSERT INTO `users` VALUES (13, 'Anahit', 'Verdyan', 'l35@mail.ru', '$2b$10$kKJP9wh/iLk9Xl1Dv6L.4e662HIs9xbPBXJ.hMv8g2o3xlL6XLnKu', 'ud0uh3qwkgcc49t11602857748133c8fy0cs8ke05ryur1597767937587Anahit.png', 'ud0uh9dkkh3an3fo', 1604487853, 'c8fy07xskebap7s2159844133520211.png', 'c8fy07xskebasygz159844150976312.jpg', 0, 0, 0, 1);
 INSERT INTO `users` VALUES (14, 'Ani', 'Samsonyan', 'rtr@mail.ru', '$2b$10$Jk/s70gJfcnQS7xofojWleiMaOdPcsfSoVMUHl2OxuSa/OYYUlJEe', 'c8fy0cs8ke05cjiz1597767217884cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-lady-108313736.jpg', 'ud0uh7ewkgkemkua', 1603345690, NULL, NULL, 0, 0, 1, 1);
 INSERT INTO `users` VALUES (15, 'Aram', 'Hakobyan', 'ar@mail.ru', '$2b$10$tNtZztpyYUyZMm8LJWHLUOYFwvXJlSDRXQzXTkmdcG0rMExdHBnuC', 'c8fy0cs8ke05dqqm1597767273886Boy-Avatar-Transparent-Images.png', '', 0, NULL, NULL, 0, 0, 0, 1);
 INSERT INTO `users` VALUES (16, 'Serine', 'Avagyan', 'qw@mail.ru', '$2b$10$2nDKx5e0U9AdWStCERXpjOPLyoCyF5CTF3wiDf.ddtTCj7KFRTmay', 'c8fy0cs8ke05f4j71597767338419woman-girl-female-cartoon-avatar-icon_25030-13347.jpg', 'c8fy0ihckdj8ggnl', 1596744514, NULL, NULL, 0, 0, 0, 1);

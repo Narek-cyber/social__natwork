@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './OtherUser.css';
-import { otherUser, OtherUserPosts, openOtherSlider, openUserMessanger } from '../../../redux/actions/otheruser';
+import { 
+    otherUser, 
+    OtherUserPosts, 
+    openOtherSlider, 
+    openUserMessanger,
+    OtherUserFriends 
+} from '../../../redux/actions/otheruser';
 // import { GetProfile } from '../../../redux/actions/user';
 import OtherSlider from '../OtherSlider/OtherSlider';
 import ProfileHeader from '../../ProfileHeader';
@@ -21,6 +27,7 @@ function OtherUserProfile(props) {
         let key = sessionStorage.currentUser;
         props.dispatch(otherUser(id, key, props.history));
         props.dispatch(OtherUserPosts(id));
+        props.dispatch(OtherUserFriends(id));
         props.dispatch(AllUsers());
     }, []);
 
@@ -36,6 +43,20 @@ function OtherUserProfile(props) {
     //         index = i
     //     }
     // }
+
+    let friendsCount = props.other.otherUserFriends.length > 0
+        ?
+            props.other.otherUserFriends.length
+        : 
+            null
+
+    let postsCount = props.other.postPhotos.length > 0
+        ?
+            props.other.postPhotos.length 
+        : 
+            null
+
+
     
     if (props.other.otherUsersProfile.photo !== undefined) {
         photo = "http://localhost:5000/" + props.other.otherUsersProfile.photo;
@@ -67,28 +88,47 @@ function OtherUserProfile(props) {
                         onClick={() => props.dispatch(openUserMessanger(props.history, id))}
                     >   Messanger 
                         <i className="fa fa-envelope ml-1" aria-hidden="true"></i>
-                    </button>     
-                    <div className="row mt-5">
-                        {
-                            props.other.postPhotos.map((item, index) => {
-                                return <div 
-                                            key={index} 
-                                            className="col-md-4 mb-5 hb" 
-                                            onClick={() => props.dispatch(openOtherSlider(index))}
-                                        >
-                                            <div className="z">
-                                                <img    
-                                                    src={"http://localhost:5000/" + item.content} 
-                                                    alt="" 
-                                                    className="postsImg" 
-                                                />
-                                                <p className="text-white">{item.text}</p>
+                    </button>
+                    <h1 className="text-center" style={{ color: 'darkcyan' }}>Friends {friendsCount}</h1>  
+                    <div className="friendsCarcass"> 
+                        <div className="row d-flex" id="result1">
+                            {
+                                props.other.otherUserFriends.map((item, index) => {
+                                    if (item.photo === '') {
+                                        item.photo = 'c8fy0voke0ep4pi1597782921750default-avatar.jpg';
+                                    }
+                                    return <div key={index} className="col-md-3 pt-4 text-center">
+                                                <img src={"http://localhost:5000/" + item.photo} alt="" />
+                                                <h4>{item.name} {item.surname}</h4>
                                             </div>
-                                        </div>
-                            })
-                        }
+                                })
+                            }
+                        </div> 
                     </div>
-                    <OtherSlider id={id} />
+                    <h1 className="text-center" style={{ color: 'mediumpurple' }}>Posts {postsCount}</h1>
+                    <div className="postCarcass"> 
+                        <div className="row mt-5 col-md-8">
+                            {
+                                props.other.postPhotos.map((item, index) => {
+                                    return <div 
+                                                key={index} 
+                                                className="col-md-4 mb-5 hb" 
+                                                onClick={() => props.dispatch(openOtherSlider(index))}
+                                            >
+                                                <div className="z">
+                                                    <img    
+                                                        src={"http://localhost:5000/" + item.content} 
+                                                        alt="" 
+                                                        className="postsImg" 
+                                                    />
+                                                    <p className="text-white">{item.text}</p>
+                                                </div>
+                                            </div>
+                                })
+                            }
+                        </div>
+                        <OtherSlider id={id} />
+                    </div> 
                 </div>
             </div>
         )

@@ -1,7 +1,11 @@
 import React from 'react';
 import './LoginComponent.css';
 import { connect } from 'react-redux';
-import { changeInputLogin, validateLogin, validateLoginEnter } from '../../redux/actions/user';
+import { 
+    changeInputLogin, 
+    validateLogin, 
+    validateLoginEnter 
+} from '../../redux/actions/user';
 import LoginHeader from '../LoginHeader';
 
 function Login(props) {
@@ -74,6 +78,14 @@ function Login(props) {
                                     name="button" 
                                     className="btn login_btn" 
                                     onClick={() => props.dispatch(validateLogin(props.history, props.user.signin ))}
+                                    // disabled={!props.user.signin.login}
+                                    disabled={
+                                        (props.user.signin.login === '' || props.user.signin.password === '') 
+                                            ? 
+                                                true 
+                                            : 
+                                                false
+                                    }
                                 >   Login 
                                     {/* {spinner} */}
                                 </button>

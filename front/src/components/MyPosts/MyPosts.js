@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import './MyPosts.css';
 import { connect } from 'react-redux';
 import ProfileHeader from '../ProfileHeader';
-import { myPosts, openSlider } from '../../redux/actions/posts';
+import { 
+    myPosts, 
+    openSlider 
+} from '../../redux/actions/posts';
 // import { GetProfile } from '../../redux/actions/user';
 import Slider from '../SliderComponent/Slider';
 

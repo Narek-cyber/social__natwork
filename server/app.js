@@ -104,6 +104,7 @@ app.post("/user/searchmessenger", (req, res) => MessagesController.searchMesseng
 app.post("/user/profile/:id", (req, res) => OtherUserController.OtherUserProfile(req, res));
 app.post("/otheruser/posts/:id", (req, res) => OtherUserController.OtherUserPosts(req, res));
 app.post("/share/:id", (req, res) => OtherUserController.SharePost(req, res));
+app.post("/otheruser/friends/:id", (req, res) => OtherUserController.OtherUserFriends(req, res));
 
 /* AdminController */
 app.post("/admin/dashboard", (req, res) => AdminController.AdminDashboard(req, res));

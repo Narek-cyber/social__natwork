@@ -129,3 +129,19 @@ export function showShareNote(text) {
         text
     }
 }
+
+export function OtherUpdateFriends(data) {
+    return {
+        type: 'OtherUpdateFriends',
+        data
+    }
+}
+
+export function OtherUserFriends(id) {
+    return function(dispatch) {
+        axios.post(`http://localhost:5000/otheruser/friends/${id}`)
+            .then(r => {
+                dispatch(OtherUpdateFriends(r.data));
+            })
+    }
+}

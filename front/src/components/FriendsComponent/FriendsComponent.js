@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import './FriendsComponent.css';
 import { connect } from 'react-redux';
 import ProfileHeader from '../ProfileHeader';
-import { removeFriend, ShowMyFriends } from '../../redux/actions/friendship';
+import { 
+    removeFriend, 
+    ShowMyFriends 
+} from '../../redux/actions/friendship';
 import { GetProfile } from '../../redux/actions/user';
 
 function Friends(props) {

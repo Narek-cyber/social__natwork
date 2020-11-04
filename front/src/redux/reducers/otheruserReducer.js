@@ -124,6 +124,12 @@ function otheruserReducer(state=otheruserState, action) {
         temp.notifications.push(temp.notification);
         return temp;
     }
+
+    if (action.type === 'OtherUpdateFriends') {
+        temp.otherUserFriends = action.data;
+        return temp;
+    }
+
     return temp;
 }
 

@@ -147,7 +147,18 @@ function Settings(props) {
                                             name="button" 
                                             className="btn login_btn" 
                                             onClick={() => props.dispatch(loginChange(props.history, props.user.settings.loginChange))}
-                                            disabled={!props.user.settings.loginChange.password}
+                                            // disabled={!props.user.settings.loginChange.password}
+                                            disabled={
+                                                (
+                                                        props.user.settings.loginChange.login === '' 
+                                                    || 
+                                                        props.user.settings.loginChange.password === ''
+                                                ) 
+                                                    ? 
+                                                        true 
+                                                    : 
+                                                        false
+                                            }
                                         >   {button1}
                                             Change
                                         </button>
@@ -207,7 +218,18 @@ function Settings(props) {
                                             name="button" 
                                             className="btn login_btn" 
                                             onClick={() => props.dispatch(passwordChange(props.history, props.user.settings.passwordChange))}
-                                            disabled={!props.user.settings.passwordChange.oldPassword}
+                                            // disabled={!props.user.settings.passwordChange.oldPassword}
+                                            disabled={
+                                                (
+                                                        props.user.settings.passwordChange.oldPassword === '' 
+                                                    || 
+                                                        props.user.settings.passwordChange.newPassword === '' 
+                                                ) 
+                                                    ? 
+                                                        true 
+                                                    : 
+                                                        false
+                                            }
                                         >   {button2}
                                             Change
                                         </button>

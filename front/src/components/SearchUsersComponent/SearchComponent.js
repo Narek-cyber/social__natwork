@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import "./searchComponent.css";
 import { connect } from 'react-redux';
-import { searchText, friendship, cancelRequest, unfriend } from '../../redux/actions/friendship';
+import { 
+    searchText, 
+    friendship, 
+    cancelRequest, 
+    unfriend 
+} from '../../redux/actions/friendship';
 import { Link } from 'react-router-dom';
 
 function SearchComponent(props) {

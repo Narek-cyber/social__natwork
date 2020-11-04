@@ -69,7 +69,20 @@ class OtherUserController {
                             })
                     })
             })   
-        }
+    }
+
+    OtherUserFriends(req, res) {
+        let id = req.params.id;
+        model.findAll("users", { id: id })
+            .then(r => {
+                r = r[0];
+                model.findFriends(r.id)
+                    .then(rr => {
+                        console.log(rr)
+                        res.send(rr);
+                    })               
+        })
+    }
 } 
 
 module.exports = new OtherUserController();

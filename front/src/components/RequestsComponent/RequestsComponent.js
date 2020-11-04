@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './RequestsComponent.css';
 import ProfileHeader from '../ProfileHeader';
-import { myRequests, rejectFriend, acceptFriend } from '../../redux/actions/friendship';
+import { 
+    myRequests, 
+    rejectFriend, 
+    acceptFriend 
+} from '../../redux/actions/friendship';
 import { GetProfile } from '../../redux/actions/user';
 
 function Requests(props) {

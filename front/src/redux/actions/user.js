@@ -163,11 +163,11 @@ export function validateLoginEnter(props, e, data) {
 export function validate(props, data) {
     return function (dispatch) {
         dispatch({ type: 'loadSignUp' });
-        let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
-        if (!reg.test(String(data.password))) {
-            dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
-        }
-        
+        var validator = require("email-validator");
+        if (validator.validate(data.login) === false) {
+            dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
+        } 
+
         else if (data.name === '') {
             dispatch(showError1("Խնդրում ենք լրացնել name դաշտը"));
         }
@@ -176,12 +176,12 @@ export function validate(props, data) {
             dispatch(showError1("Խնդրում ենք լրացնել surname դաշտը"));
         }
 
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(String(data.login).toLowerCase())) {
-            dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
+        let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
+        if (!reg.test(String(data.password))) {
+            dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
         }
 
-        else if (data.surname && data.name && data.password && data.login) {
+        else if (data.surname && data.name && data.password && validator.validate(data.login) === true) {
             axios.post('http://localhost:5000/add', data)
                 .then(r => {
                     if ("success" in r.data) {
@@ -200,25 +200,25 @@ export function validateProfileEnter(props, e, data) {
     return function (dispatch) {
         if (e.key === 'Enter') {
             dispatch({ type: 'loadSignUp' });
+            var validator = require("email-validator");
+            if (validator.validate(data.login) === false) {
+                dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
+            } 
+    
+            else if (data.name === '') {
+                dispatch(showError1("Խնդրում ենք լրացնել name դաշտը"));
+            }
+    
+            else if (data.surname === '') {
+                dispatch(showError1("Խնդրում ենք լրացնել surname դաշտը"));
+            }
+    
             let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
             if (!reg.test(String(data.password))) {
                 dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
             }
-            
-            else if (data.name === '') {
-                dispatch(showError1("Խնդրում ենք լրացնել name դաշտը"));
-            }
-
-            else if (data.surname === '') {
-                dispatch(showError1("Խնդրում ենք լրացնել surname դաշտը"));
-            }
-
-            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!re.test(String(data.login).toLowerCase())) {
-                dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
-            }
-
-            else if (data.surname && data.name && data.password && data.login) {
+    
+            else if (data.surname && data.name && data.password && validator.validate(data.login) === true) {
                 axios.post('http://localhost:5000/add', data)
                     .then(r => {
                         if ("success" in r.data) {
@@ -456,13 +456,22 @@ export function logOut(props) {
 }
 
 
+
+
+
+
+
+
+
+
 // export function validate(props, data) {
 //     return function (dispatch) {
-//         var validator = require("email-validator");
-//         if (validator.validate(data.login) === false) {
-//             dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
-//         } 
-
+//         dispatch({ type: 'loadSignUp' });
+//         let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
+//         if (!reg.test(String(data.password))) {
+//             dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
+//         }
+        
 //         else if (data.name === '') {
 //             dispatch(showError1("Խնդրում ենք լրացնել name դաշտը"));
 //         }
@@ -471,13 +480,12 @@ export function logOut(props) {
 //             dispatch(showError1("Խնդրում ենք լրացնել surname դաշտը"));
 //         }
 
-//         let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
-//         if (!reg.test(String(data.password))) {
-//             dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
+//         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//         if (!re.test(String(data.login).toLowerCase())) {
+//             dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
 //         }
 
-       
-//         else if (data.surname && data.name && data.password && validator.validate(data.login) === true) {
+//         else if (data.surname && data.name && data.password && data.login) {
 //             axios.post('http://localhost:5000/add', data)
 //                 .then(r => {
 //                     if ("success" in r.data) {
@@ -488,6 +496,44 @@ export function logOut(props) {
 //                         dispatch(showError1(r.data.error));
 //                     }
 //                 })
+//         }
+//     }
+// }
+
+// export function validateProfileEnter(props, e, data) {
+//     return function (dispatch) {
+//         if (e.key === 'Enter') {
+//             dispatch({ type: 'loadSignUp' });
+//             let reg = /(?=.*[0-9])(?=.*[!@#$%^&*()])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()]{6,}/g;
+//             if (!reg.test(String(data.password))) {
+//                 dispatch(showError1("Խնդրում ենք լրացնել password դաշտը"));
+//             }
+            
+//             else if (data.name === '') {
+//                 dispatch(showError1("Խնդրում ենք լրացնել name դաշտը"));
+//             }
+
+//             else if (data.surname === '') {
+//                 dispatch(showError1("Խնդրում ենք լրացնել surname դաշտը"));
+//             }
+
+//             let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//             if (!re.test(String(data.login).toLowerCase())) {
+//                 dispatch(showError1("Խնդրում ենք լրացնել login դաշտը"));
+//             }
+
+//             else if (data.surname && data.name && data.password && data.login) {
+//                 axios.post('http://localhost:5000/add', data)
+//                     .then(r => {
+//                         if ("success" in r.data) {
+//                             props.push("/login");
+//                             dispatch(showError1(""));
+//                             dispatch(showSuccess1());
+//                         } else if ("error" in r.data) {
+//                             dispatch(showError1(r.data.error));
+//                         }
+//                     })
+//             }
 //         }
 //     }
 // }
