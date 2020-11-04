@@ -78,7 +78,6 @@ class OtherUserController {
                 r = r[0];
                 model.findFriends(r.id)
                     .then(rr => {
-                        console.log(rr)
                         res.send(rr);
                     })               
         })
