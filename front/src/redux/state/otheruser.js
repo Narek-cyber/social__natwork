@@ -12,5 +12,7 @@ export default {
     comments: [],
     notification: "",
     notifications: [],
-    otherUserFriends: []
+    otherUserFriends: [],
+    isLoading: false,
+    error: ""
 }

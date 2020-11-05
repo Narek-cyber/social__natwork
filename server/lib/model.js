@@ -108,6 +108,38 @@ module.exports = {
         })
     },
 
+    async findUsers1(mytoken, id){
+        return new Promise(async (resolve, reject) => {
+            let command = `
+            SELECT * FROM users 
+            WHERE id IN (
+                SELECT user1 FROM friends 
+                WHERE user2 = '${id}'
+                UNION
+                SELECT user2 FROM friends
+                WHERE user1 = '${id}'
+            )
+        `;
+
+            let myData = await this.findAll("users", { token: mytoken })
+            if (myData.length > 0) {
+                myData = myData[0].id;
+            }
+
+            connection.query(command, async (err, data) => {
+                if(err) reject(err);
+                for (let i = 0; i < data.length; i++) {
+                    delete data[i].password;
+                    delete data[i].login;
+                    delete data[i].token;
+                    data[i].isRequestSent = await this.findAll("requests", { user1: myData, user2: data[i].id });
+                    data[i].areWeFriends = await this.findAreFriends(myData, data[i].id);
+                }
+                resolve(data);
+            })
+        })
+    },
+
     findAreFriends(myId, id){
         return new Promise(async (resolve, reject)=>{
             let command = `

@@ -6,5 +6,6 @@ export default {
     error: "",
     isLoading: false,
     notification: "",
-    notifications: []
+    notifications: [],
+    isLoading: false
 }

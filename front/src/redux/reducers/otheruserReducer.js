@@ -130,6 +130,71 @@ function otheruserReducer(state=otheruserState, action) {
         return temp;
     }
 
+    
+    if (action.type === 'friendship1') {
+        let obj = temp.otherUserFriends.filter(item => item.id === action.payload);
+        obj[0].isLoading = true;
+        return temp;
+    } else if (action.type === "friendYourSelf1") {
+        temp.error = action.key;
+        return temp;
+    } else if (action.type === "requestSent1") {
+        let id = action.id;
+        let obj = temp.otherUserFriends.find(y => y.id === id);
+        obj.isRequestSent.push(1);
+        obj.isLoading = false;
+        return temp;
+    }
+
+    if (action.type === "showError1") {
+        temp.error = action.text;
+        return temp;
+    }
+
+    if (action.type === "showNote1") {
+        temp.notification = action.text;
+        temp.notifications.push(temp.notification);
+        return temp;
+    }
+
+    
+    if (action.type === 'cancelRequest1') {
+        let obj = temp.otherUserFriends.filter(item => item.id === action.payload);
+        obj[0].isLoading = true;
+        return temp;
+    } else if (action.type === "cancelRequests1") {
+        let id = action.id;
+        let obj = temp.otherUserFriends.filter(y => y.id === id);
+        obj[0].isRequestSent.splice(0, 1);
+        obj[0].isLoading = false;
+        return temp;
+    }
+
+    if (action.type === "showNoteCancel1") {
+        temp.notification = action.text;
+        temp.notifications.push(temp.notification);
+        return temp;
+    }
+
+    if (action.type === 'unfriend1') {
+        console.log(action.payload);
+        let obj = temp.otherUserFriends.filter(item => item.id === action.payload);
+        obj[0].isLoading = true;
+        return temp;
+    } else if (action.type === 'unfriendFriends1') {
+        let id = action.id;
+        let obj = temp.otherUserFriends.find(y => y.id === id);
+        obj.areWeFriends[0].qanak = 0;
+        obj.isLoading = false;
+        return temp;
+    }
+
+    if (action.type === "showNoteUnfriend1") {
+        temp.notification = action.text;
+        temp.notifications.push(temp.notification);
+        return temp;
+    }
+
     return temp;
 }
 

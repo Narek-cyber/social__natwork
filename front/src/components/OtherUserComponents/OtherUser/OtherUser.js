@@ -6,7 +6,10 @@ import {
     OtherUserPosts, 
     openOtherSlider, 
     openUserMessanger,
-    OtherUserFriends 
+    OtherUserFriends,
+    friendship1,
+    cancelRequest1,
+    unfriend1
 } from '../../../redux/actions/otheruser';
 // import { GetProfile } from '../../../redux/actions/user';
 import OtherSlider from '../OtherSlider/OtherSlider';
@@ -15,6 +18,7 @@ import ProfileHeader from '../../ProfileHeader';
 import { AllUsers } from '../../../redux/actions/user';
 
 import socketIOClient from "socket.io-client";
+
 const ENDPOINT = "http://127.0.0.1:5000";
 const socket = socketIOClient(ENDPOINT);
 
@@ -89,6 +93,7 @@ function OtherUserProfile(props) {
                     >   Messanger 
                         <i className="fa fa-envelope ml-1" aria-hidden="true"></i>
                     </button>
+                    <p className="text-danger searcherr">{props.other.error}</p>
                     <h1 className="text-center" style={{ color: 'darkcyan' }}>Friends {friendsCount}</h1>  
                     <div className="friendsCarcass"> 
                         <div className="row d-flex" id="result1">
@@ -97,9 +102,66 @@ function OtherUserProfile(props) {
                                     if (item.photo === '') {
                                         item.photo = 'c8fy0voke0ep4pi1597782921750default-avatar.jpg';
                                     }
-                                    return <div key={index} className="col-md-3 pt-4 text-center">
+
+                                    let addFriendButton = null;
+
+                                    if (item.isRequestSent.length > 0) {
+                                        addFriendButton = 
+                                        <button 
+                                            className="btn btn-light btn-sm" 
+                                            onClick={() => props.dispatch(cancelRequest1(index, item.id))}
+                                        >
+                                                {
+                                                    item.isLoading && (
+                                                        <span   className="spinner-border spinner-border-sm" 
+                                                                role="status" 
+                                                                aria-hidden="true">
+                                                        </span>
+                                                    )
+                                                }
+                                                Cancel Request
+                                        </button>
+                                    } else if (item.areWeFriends[0].qanak > 0) {
+                                        addFriendButton = 
+                                        <button 
+                                            className="btn btn-danger btn-sm" 
+                                            onClick={() => props.dispatch(unfriend1(index, item.id))}
+                                        > 
+                                                {
+                                                    item.isLoading && (
+                                                        <span   
+                                                            className="spinner-border spinner-border-sm" 
+                                                            role="status" 
+                                                            aria-hidden="true">
+                                                        </span>
+                                                    )
+                                                }
+                                                Unfriends
+                                        </button>
+                                    } 
+                                    else if (item.areWeFriends[0].qanak === 0) {
+                                        addFriendButton = 
+                                        <button 
+                                            className="btn btn-info btn-sm mx-auto" 
+                                            onClick={() => props.dispatch(friendship1(item.id))}
+                                        > 
+                                                {
+                                                    item.isLoading && (
+                                                        <span   
+                                                            className="spinner-border spinner-border-sm" 
+                                                            role="status" 
+                                                            aria-hidden="true">
+                                                        </span>
+                                                    )
+                                                }
+                                                Add Friend
+                                        </button>
+                                    }
+
+                                    return <div key={index} className="col-md-3 pt-4 text-center mb-3">
                                                 <img src={"http://localhost:5000/" + item.photo} alt="" />
                                                 <h4>{item.name} {item.surname}</h4>
+                                                {addFriendButton}
                                             </div>
                                 })
                             }
