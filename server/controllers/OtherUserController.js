@@ -51,7 +51,7 @@ class OtherUserController {
                         model.findAll("users", { token })
                             .then(a => {
                                 a = a[0];
-                                model.add("posts", { text: rr[index].text, content: rr[index].content, user_id: a.id  })
+                                model.add("posts", { text: rr[index].text, content: rr[index].content, user_id: a.id, post_status: 1  })
                                 if (a.id == id) {
                                     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
                                                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  

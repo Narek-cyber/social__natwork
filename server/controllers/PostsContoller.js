@@ -45,7 +45,7 @@ class PostsController {
             .then(r => {
                 if (r.length > 0) {
                     r = r[0];
-                    model.add("posts", { user_id: r.id, text: req.body.text, content: req.file.filename })
+                    model.add("posts", { user_id: r.id, text: req.body.text, content: req.file.filename, post_status: 0 })
                     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
                                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
                                 + new Date().toJSON().slice(0, 10).slice(0, 4);
