@@ -334,7 +334,6 @@ module.exports = {
                     reject(error);
                 } else {
                     resolve("The message was sent!");
-                    console.log('The message was sent!')
                 }
             });
         });
