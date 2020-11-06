@@ -11,13 +11,13 @@ class UserController {
                 let link = `http://${req.get('host')}/verify?id=${rand}`;
 
                 let mailOptions = {
-                    from: 'socialnet130@gmail.com',
+                    from: 'socialnet130',
                     to : 'verdyanashxen1@gmail.com',
                     subject : "Please confirm your Email account",
                     html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
                 }
 
-                // model.sendMail(mailOptions);
+                model.sendMail(mailOptions);
 
                 if (r.length == 0) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {

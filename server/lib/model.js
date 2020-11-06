@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
     secure: false,
     service: "Gmail",
     auth: {
-        user: "socialnet130@gmail.com",
+        user: "socialnet130",
         pass: "asdAS!@123"
     },
     tls: {
@@ -334,6 +334,7 @@ module.exports = {
                     reject(error);
                 } else {
                     resolve("The message was sent!");
+                    console.log('The message was sent!')
                 }
             });
         });
