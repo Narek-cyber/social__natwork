@@ -12,6 +12,7 @@
 
 .result {
     background: yellowgreen;
+    height: 1350px;
 }
 
 .messanger {
@@ -34,6 +35,6 @@
 
 .friendsCarcass {
     border: 1px solid brown;
-    margin-bottom: 30px;
+    margin-bottom: 42px;
 }
 

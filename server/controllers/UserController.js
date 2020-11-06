@@ -20,7 +20,7 @@ class UserController {
                             <br>[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]`
                 }
 
-                // model.sendMail(mailOptions);
+                model.sendMail(mailOptions);
 
                 if (r.length == 0) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {

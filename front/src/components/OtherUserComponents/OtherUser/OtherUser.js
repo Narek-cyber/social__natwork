@@ -70,6 +70,10 @@ function OtherUserProfile(props) {
         photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg"
     }
 
+    if (props.other.otherUsersProfile.photo === undefined || props.other.otherUsersProfile.photo === null) {
+        photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg"
+    }
+
     return (
         <div className="result">
             <ProfileHeader router={props.history} />

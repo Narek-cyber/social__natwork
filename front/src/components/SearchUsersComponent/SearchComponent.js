@@ -103,7 +103,7 @@ function SearchComponent(props) {
                             </button>
                         }
 
-                        if (item.photo === '') {
+                        if (item.photo === '' || item.photo === null || item.photo === undefined) {
                             item.photo = 'c8fy0voke0ep4pi1597782921750default-avatar.jpg'; 
                         }
 
