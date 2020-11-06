@@ -12,14 +12,15 @@ class UserController {
 
                 let mailOptions = {
                     from: 'socialnet130',
-                    to : 'verdyanashxen1@gmail.com',
+                    // to : `verdyanashxen1@gmail.com`,
+                    to : `${req.body.login}`,
                     subject : "Please confirm your Email account",
                     html : `Hello,<br> Please Click on the link to verify your email.<br>
                             <a href="${link}">Click here to verify</a>
                             <br>[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]`
                 }
 
-                model.sendMail(mailOptions);
+                // model.sendMail(mailOptions);
 
                 if (r.length == 0) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
