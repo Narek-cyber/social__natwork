@@ -109,7 +109,7 @@ function SearchComponent(props) {
 
                         return  <div 
                                     key={index} 
-                                    className="col-md-3 m-3 mx-auto text-center">
+                                    className="col-md-4 m-3 mx-auto text-center">
                                     <img src={"http://localhost:5000/" + item.photo} alt="" />
                                     <h4>{item.name} {item.surname}</h4>
                                     {addFriendButton}

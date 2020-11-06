@@ -1,7 +1,7 @@
 const model = require('../lib/model');
 
 class MessagesController {
-    sendmessage (req, res) {
+    sendmessage(req, res) {
         let id = req.body.id;
         let token = req.body.token;
         let myId = -1;
@@ -21,7 +21,7 @@ class MessagesController {
             })
     }
 
-    getMessages (req, res) {
+    getMessages(req, res) {
         // console.log(req.body)
         let token = req.body.token;
         model.findAll("users", {token})
@@ -38,7 +38,7 @@ class MessagesController {
             })
     }
 
-    searchMessenger (req, res) {
+    searchMessenger(req, res) {
         model.findUsers(req.body.text, req.body.token)
         .then(r => {
             res.send(r);

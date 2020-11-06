@@ -78,6 +78,7 @@ app.post("/login", (req, res) => UserController.login(req, res));
 app.post("/profile", (req, res) => UserController.profile(req, res));
 app.post("/user/search", (req, res) => UserController.search(req, res));
 app.post("/allusers", (req, res) => UserController.allUsersList(req, res));
+app.get("/verify", (req, res) => UserController.verifyEmail(req, res));
 
 /* Settings Controller */ 
 app.post("/changeYourLogin", (req, res) => SettingsController.changeLogin(req, res));

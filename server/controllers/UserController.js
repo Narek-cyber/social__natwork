@@ -2,11 +2,12 @@ const model = require('../lib/model');
 const uniqid = require("uniqid");
 const bcrypt = require('bcrypt');
 
+let rand = Math.floor((Math.random() * 100) + 54);
+
 class UserController {
-    add (req, res) {
+    add(req, res) {
         model.findAll("users", { login: req.body.login })
             .then(r => {
-                let rand = Math.floor((Math.random() * 100) + 54);
                 let host = req.get('host');
                 let link = `http://${req.get('host')}/verify?id=${rand}`;
 
@@ -20,7 +21,7 @@ class UserController {
                             <br>[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]`
                 }
 
-                model.sendMail(mailOptions);
+                // model.sendMail(mailOptions);
 
                 if (r.length == 0) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -36,7 +37,24 @@ class UserController {
             })
     }
 
-    login (req, res) {
+    verifyEmail(req, res) {
+        let host = req.get('host');
+
+        if ((req.protocol+"://"+req.get('host'))==("http://"+host)) {
+            console.log("Domain is matched. Information is from Authentic email");
+            if(req.query.id == rand) {
+                // console.log("email is verified");
+                res.end("<h1>Email is been Successfully verified</h1>");
+            } else {
+                console.log("email is not verified");
+                res.end("<h1>Bad Request</h1>");
+            }
+        } else {
+            res.end("<h1>Request is from unknown source");
+        }
+    }
+
+    login(req, res) {
         model.findAll("users", { login: req.body.login })
             .then(r => {
                 if (r.length == 0) {
@@ -86,7 +104,7 @@ class UserController {
             })
     }
 
-    profile (req, res) {
+    profile(req, res) {
         let token = req.body.token;
             
         let user = model.findAll("users", { token })
@@ -115,7 +133,7 @@ class UserController {
                         })
     }
 
-    search (req, res) {
+    search(req, res) {
         // console.log(req.body);
         model.findUsers(req.body.text, req.body.token)
             .then(r => {

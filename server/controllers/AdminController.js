@@ -1,14 +1,14 @@
 const model = require('../lib/model');
 
 class AdminController {
-    AdminDashboard (req, res) {
+    AdminDashboard(req, res) {
         model.findAllUsers('users', 0)
         .then(r => {
             res.send(r);
         })
     }
 
-    AdminDashboardBlock (req, res) {
+    AdminDashboardBlock(req, res) {
         let id = req.body.id;
         model.findAll('users', { id: id })
             .then(r => {
@@ -19,7 +19,7 @@ class AdminController {
             })
     }
 
-    AdminDashboardUnblock (req, res) {
+    AdminDashboardUnblock(req, res) {
         let id = req.body.id;
         model.findAll('users', { id: id })
             .then(r => {

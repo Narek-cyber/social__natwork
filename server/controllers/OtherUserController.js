@@ -1,7 +1,7 @@
 const model = require('../lib/model');
 
 class OtherUserController {
-    OtherUserProfile (req, res) {
+    OtherUserProfile(req, res) {
         let id = req.params.id
         // console.log(id);
         // console.log(req.body);   

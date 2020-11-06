@@ -1,7 +1,7 @@
 const model = require('../lib/model');
 
 class FriendsController {
-    friendship (req, res) {
+    friendship(req, res) {
         // console.log(req.body.id);
         model.findAll("users", { token: req.body.token })
             .then(r => {
@@ -26,7 +26,7 @@ class FriendsController {
             })
     }
 
-    friendRequests (req, res) {
+    friendRequests(req, res) {
         model.findAll("users", { token: req.body.token })
             .then(r => {
                 r = r[0];
@@ -37,7 +37,7 @@ class FriendsController {
             })
     }
 
-    friendAccept (req, res) {
+    friendAccept(req, res) {
         let id = req.body.id;
         let token = req.body.token;
     
@@ -59,7 +59,7 @@ class FriendsController {
             })
     }
     
-    friendReject (req, res) {
+    friendReject(req, res) {
         let id = req.body.id;
         let token = req.body.token;
     
@@ -75,7 +75,7 @@ class FriendsController {
             })
     }
 
-    friendFriends (req, res) {
+    friendFriends(req, res) {
         model.findAll("users", { token: req.body.token })
             .then(r => {
                 r = r[0];
@@ -97,7 +97,7 @@ class FriendsController {
             })
     }
 
-    friendRemove (req, res) {
+    friendRemove(req, res) {
         let id = req.body.id;
         let token = req.body.token;
         let myId = -1;
@@ -115,7 +115,7 @@ class FriendsController {
             })
     }
 
-    requestCancel (req, res) {
+    requestCancel(req, res) {
         let id = req.body.id;
         let token = req.body.token;
     
@@ -131,7 +131,7 @@ class FriendsController {
             })
     }
 
-    friendUnfriend (req, res) {
+    friendUnfriend(req, res) {
         let id = req.body.id;
         let token = req.body.token;
         let myId = -1;

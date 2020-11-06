@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 class SettingsController {
-    changeLogin (req, res) {
+    changeLogin(req, res) {
         let token = req.body.token;
         // console.log(token);
         model.findAll("users", { token })
@@ -36,7 +36,7 @@ class SettingsController {
         })
     }
 
-    changePassword (req, res) {
+    changePassword(req, res) {
         let token = req.body.token;
         // console.log(req.body.data.newPassword);
         model.findAll("users", { token })
@@ -67,7 +67,7 @@ class SettingsController {
             })
     }
 
-    UploadUserPic (req, res) {
+    UploadUserPic(req, res) {
         let token = req.body.user;
         model.findAll("users", { token })
             .then(r => {
@@ -87,7 +87,6 @@ class SettingsController {
 }
 
 module.exports = new SettingsController();
-
 
 
 

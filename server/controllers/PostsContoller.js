@@ -2,7 +2,7 @@ const model = require('../lib/model');
 const fs = require('fs');
 
 class PostsController {
-    UserPosts (req, res) {
+    UserPosts(req, res) {
         let token = req.body.token;
         model.findAll("users", { token })
             .then(r=>{
@@ -14,7 +14,7 @@ class PostsController {
             })
     }
 
-    UserPostsDelete (req, res) {
+    UserPostsDelete(req, res) {
         let token = req.body.token;
         model.findAll("users", { token })
             .then(r=>{
@@ -34,7 +34,7 @@ class PostsController {
             })
     }
 
-    UploadMyPosts (req, res) {
+    UploadMyPosts(req, res) {
         let token = req.body.user;
         /*
             token => user_id
