@@ -75,7 +75,7 @@ class UserController {
                         if (err) throw err;
                         if (!result) {
                             let count = r.block_count;
-                            if (count < 3){
+                            if (count < 3) {
                                 count++
                                 model.update("users", { id: r.id }, { block_count: count })
                             } else {

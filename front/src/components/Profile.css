@@ -8,7 +8,12 @@
     color: white;
 }
 
-@media screen and (max-width:992px) {
+.head:hover {
+    background: rgb(91, 214, 132);
+    transition: width 2s;
+}
+
+@media screen and (max-width: 992px) {
     .fly>a {
         display: block;
     }

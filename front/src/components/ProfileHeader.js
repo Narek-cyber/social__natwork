@@ -15,59 +15,75 @@ function ProfileHeader(props) {
                     <ul className="nav nav-justified mb-4 text-nowrap">
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile"
                                 onClick={() => props.dispatch({ type: 'resetSearchInput' })}
-                            >   Profile
+                            >   
+                                <i class="fa fa-user-circle-o mr-1" aria-hidden="true"></i>
+                                Profile
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/settings"
-                            >   Settings
+                            >
+                                <i class="fa fa-cog mr-1" aria-hidden="true"></i>   
+                                Settings
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/requests"
-                            >   Requests
+                            >   
+                                <i class="fa fa-circle mr-1" aria-hidden="true"></i>
+                                Requests
                             </Link>
                           </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/friends"
-                            >   Friends
+                            >   
+                                <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                                Friends
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/addpost"
-                            >   Add Post
+                            >   
+                                <i class="fa fa-file-image-o mr-1" aria-hidden="true"></i>
+                                Add Post
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/myposts"
-                            >   My Posts
+                            >   
+                                <i class="fa fa-picture-o mr-1" aria-hidden="true"></i>
+                                My Posts
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/messenger"
-                            >   Messenger
+                            >   
+                                <i className="fa fa-envelope mr-1" aria-hidden="true"></i>
+                                Messenger
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link 
-                                className="nav-link" 
+                                className="nav-link head" 
                                 to="/profile/notification"
-                            >   Notification
+                            >   
+                                <i class="fa fa-envelope-o mr-1" aria-hidden="true"></i>
+                                Notification
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -75,7 +91,9 @@ function ProfileHeader(props) {
                                 className="nav-link text-danger" 
                                 to="#" 
                                 onClick={() => props.dispatch(logOut(props.router))}
-                            >   Logout
+                            >   
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Logout
                             </Link>
                         </li>
                     </ul>
