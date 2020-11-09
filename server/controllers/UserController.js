@@ -40,8 +40,8 @@ class UserController {
         let host = req.get('host');
         // console.log(req.query.mail);
 
-        if ((req.protocol+"://"+req.get('host'))==("http://"+host)) {
-            console.log("Domain is matched. Information is from Authentic email");
+        if (`${req.protocol}://${req.get('host')}` == `http://${host}`) {
+        // console.log("Domain is matched. Information is from Authentic email");
             if (req.query.id == req.query.rand) {
                 // console.log("email is verified");
                 model.findAll("users", { login: req.query.mail })

@@ -15,10 +15,17 @@ function Requests(props) {
         // props.dispatch(myRequests());
     }, []);
 
+    let requests = props.friends.myrequests.length === 0
+        ?
+            <h1 className="text-white text-center">Requests</h1>
+        :
+            <h1 className="text-white text-center">Requests {props.friends.myrequests.length}</h1>
+
+
     return (
         <div className="container">
            <ProfileHeader router={props.history} />
-            <h1 className="text-white text-center">Requests {props.friends.myrequests.length}</h1>
+            {requests}
             <div className="row d-flex" id="result1">
                 {
                     props.friends.myrequests.map((item, index) => {

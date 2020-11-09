@@ -21,11 +21,17 @@ function Friends(props) {
             <div className="spinner-grow text-primary" role="status">
                 <span className="sr-only">Loading...</span>
             </div>
+
+    let friends = props.friends.myfriends.length === 0
+        ?
+            <h1 className="text-white text-center">Friends</h1>
+        :
+            <h1 className="text-white text-center">Friends {props.friends.myfriends.length}</h1>
     
     return (
         <div className="container">
            <ProfileHeader router={props.history} />
-           <h1 className="text-white text-center">Friends {props.friends.myfriends.length}</h1>
+           {friends}
            <div className="row d-flex" id="result1">
                 {
                     props.friends.myfriends.map((item, index) => {
