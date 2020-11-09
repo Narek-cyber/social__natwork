@@ -30,7 +30,8 @@ function Settings(props) {
             <span   
                 className="spinner-border spinner-border-sm" 
                 role="status" 
-                aria-hidden="true">
+                aria-hidden="true"
+            >
             </span>
 
     const button1 = props.user.settings.loginChange.isLoading === false
@@ -40,7 +41,8 @@ function Settings(props) {
             <span   
                 className="spinner-border spinner-border-sm" 
                 role="status" 
-                aria-hidden="true">
+                aria-hidden="true"
+            >
             </span>
 
     const button2 = props.user.settings.passwordChange.isLoading === false
@@ -50,7 +52,8 @@ function Settings(props) {
             <span   
                 className="spinner-border spinner-border-sm" 
                 role="status" 
-                aria-hidden="true">
+                aria-hidden="true"
+            >
             </span>
 
 

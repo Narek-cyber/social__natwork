@@ -117,9 +117,11 @@ function OtherUserProfile(props) {
                                         >
                                                 {
                                                     item.isLoading && (
-                                                        <span   className="spinner-border spinner-border-sm" 
-                                                                role="status" 
-                                                                aria-hidden="true">
+                                                        <span   
+                                                            className="spinner-border spinner-border-sm" 
+                                                            role="status" 
+                                                            aria-hidden="true"
+                                                        >
                                                         </span>
                                                     )
                                                 }
@@ -136,7 +138,8 @@ function OtherUserProfile(props) {
                                                         <span   
                                                             className="spinner-border spinner-border-sm" 
                                                             role="status" 
-                                                            aria-hidden="true">
+                                                            aria-hidden="true"
+                                                        >
                                                         </span>
                                                     )
                                                 }
@@ -154,7 +157,8 @@ function OtherUserProfile(props) {
                                                         <span   
                                                             className="spinner-border spinner-border-sm" 
                                                             role="status" 
-                                                            aria-hidden="true">
+                                                            aria-hidden="true"
+                                                        >
                                                         </span>
                                                     )
                                                 }

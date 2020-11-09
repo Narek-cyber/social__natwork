@@ -11,7 +11,7 @@
  Target Server Version : 100132
  File Encoding         : 65001
 
- Date: 04/11/2020 18:52:19
+ Date: 09/11/2020 12:53:11
 */
 
 SET NAMES utf8mb4;
@@ -281,28 +281,29 @@ CREATE TABLE `users`  (
   `block_time` int(155) NULL DEFAULT NULL,
   `type` int(11) NULL DEFAULT 0,
   `block_status` int(11) NULL DEFAULT 1,
+  `verification_satus` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'Ashxen ', 'Verdyan', 'z@mail.ru', '$2b$10$JuC4rbKlqarK0vxDUig0BeyMX7nhxXcU3oGXHMDKmKaGF1vAI/DJm', 'c8fy0cs8ke05khd51597767588329Ashxen.jpg\r\n', 'c8fy09nkkd7pi85m', 1596047556, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (2, 'Mary', 'Minasyan', 'rrr@mail.ru', '$2b$10$OvIi39Y5XwkXkojHbP/LN.KBrzG8X9qUTzI6/aqF.kScfw5HSLz7S', 'c8fy0cs8ke05p2721597767801950girl-avatar-cartoon-stock-vector-image-cute-beautiful-eyes-93364804.jpg', '', 0, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (3, 'Hermine', 'Hakobyan', 's@mail.ru', '$2b$10$AMfgOM6g9WuEPAYLEv3cpedoLZ2aOvIiqtEhbVuW4qBpsKDm3ychm', 'c8fy0cs8ke05qtec1597767883860images.jpg', 'c8fy0m8kd7vo3jq', NULL, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (4, 'Arpine', 'Sargsyan', 'd@mail.ru', '$2b$10$j.AolOUQ.VNY6eJ1PSCiyOTVRHcEaom4eQjz9Fb69MHG75fDnnS1K', 'c8fy0cs8ke03u0371597764673267girl_female_woman_avatar-512.png', 'c8fy0f9wkeg53o2h', 1598734262, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (5, 'Marianna', 'Gevorgyan', 'dr@mail.ru', '$2b$10$Pw5gz3p4WnCwauy8nyyBcOkhEugTvIFLqL0j8Jku6du2MpukJFB8y', 'c8fy0cs8ke03wdz61597764784578download.png', '', 0, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (6, 'Hakob', 'Vardanyan', 'AAA@mail.ru', '$2b$10$Zr95.Gmo26ssrq.jk7Mb2.LD5cHB3AvPJeVEgZlp7aeEs91jemlj.', 'c8fy0cs8ke03hsv4159776410403251f6fb256629fc755b8870c801092942.png', 'c8fy06d8kd7wn5au', NULL, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (7, 'Hexush', 'Surenyan', 'f@mail.ru', '$2b$10$Pn6U6Wp.Vy1kAmckPLGgmerZuqUzJjBGpouOUPdRfTddSkZuI6YNe', 'c8fy0cs8ke03yjub1597764885491039_girl_avatar_profile_woman_headband-512 (1).png', 'c8fy06d8kd7wox1p', NULL, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (8, 'Aida', 'Galoyan', 'zf@mail.ru', '$2b$10$KBs3ScBXM5Z520ucD0P87OoXHptnD5wxRTJlRkXh.Dvt/9ESNWiHq', 'c8fy0cs8ke054nqp1597766850097smiling-girl-avatar_102172-32.jpg', 'c8fy0avwkd7x3rk0', 1596060318, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (9, 'Arman', 'Verdyan', 'l15@mail.ru', 'asdfAS!@124', 'c8fy0cs8ke052j011597766750641oscar_boy-512.png', 'c8fy0cw8kdfv2ogy', 1596540638, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (10, 'Minas', 'Minasyan', 'rt@mail.ru', '$2b$10$FE.9tTTaDeJLRisKYvZt9uw5gj6u588x5kbiwnS.m/unfGWvazpFG', 'c8fy0cs8ke05608x1597766912961cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png', 'c8fy09kgkddj6ydq', NULL, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (11, 'Hayk', 'Hovhannisyan', 'x@mail.ru', '$2b$10$VibEQvVIhXxAsoeSblPQluql94a1QY7FoR965HqjPiX2.wFlWCH8y', 'c8fy0cs8ke059p10159776708504491-512.png', 'c8fy0fbskdf1av2z', NULL, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (12, 'Armen', 'Verdyan', 'l13@mail.ru', '$2b$10$mVn.cTE6Nf1akaBSGWhZpuFSRyAIHfOjeQBNM12QTwgFsU0wU/VAC', 'c8fy0cs8ke05b1yl1597767148461download0.png', 'c8fy0bf0kdfvpi5i', 1596541702, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (13, 'Anahit', 'Verdyan', 'l35@mail.ru', '$2b$10$kKJP9wh/iLk9Xl1Dv6L.4e662HIs9xbPBXJ.hMv8g2o3xlL6XLnKu', 'ud0uh3qwkgcc49t11602857748133c8fy0cs8ke05ryur1597767937587Anahit.png', 'ud0uh9dkkh3an3fo', 1604487853, 'c8fy07xskebap7s2159844133520211.png', 'c8fy07xskebasygz159844150976312.jpg', 0, 0, 0, 1);
-INSERT INTO `users` VALUES (14, 'Ani', 'Samsonyan', 'rtr@mail.ru', '$2b$10$Jk/s70gJfcnQS7xofojWleiMaOdPcsfSoVMUHl2OxuSa/OYYUlJEe', 'c8fy0cs8ke05cjiz1597767217884cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-lady-108313736.jpg', 'ud0uh7ewkgkemkua', 1603345690, NULL, NULL, 0, 0, 1, 1);
-INSERT INTO `users` VALUES (15, 'Aram', 'Hakobyan', 'ar@mail.ru', '$2b$10$tNtZztpyYUyZMm8LJWHLUOYFwvXJlSDRXQzXTkmdcG0rMExdHBnuC', 'c8fy0cs8ke05dqqm1597767273886Boy-Avatar-Transparent-Images.png', '', 0, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (16, 'Serine', 'Avagyan', 'qw@mail.ru', '$2b$10$2nDKx5e0U9AdWStCERXpjOPLyoCyF5CTF3wiDf.ddtTCj7KFRTmay', 'c8fy0cs8ke05f4j71597767338419woman-girl-female-cartoon-avatar-icon_25030-13347.jpg', 'c8fy0ihckdj8ggnl', 1596744514, NULL, NULL, 0, 0, 0, 1);
-INSERT INTO `users` VALUES (17, 'Dina', 'Harutyunyan', 'ddt@mail.ru', '$2b$10$6Wssuo66.nhfZLyChLo4DeN0jWWDZb4dwJS/i.8QfcSMzJ.intm6.', 'c8fy0cs8ke05gv5u1597767419586downloadgg.png', '', 0, NULL, NULL, 0, 0, 0, 1);
+INSERT INTO `users` VALUES (1, 'Ashxen ', 'Verdyan', 'z@mail.ru', '$2b$10$JuC4rbKlqarK0vxDUig0BeyMX7nhxXcU3oGXHMDKmKaGF1vAI/DJm', 'c8fy0cs8ke05khd51597767588329Ashxen.jpg\r\n', 'c8fy09nkkd7pi85m', 1596047556, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (2, 'Mary', 'Minasyan', 'rrr@mail.ru', '$2b$10$OvIi39Y5XwkXkojHbP/LN.KBrzG8X9qUTzI6/aqF.kScfw5HSLz7S', 'c8fy0cs8ke05p2721597767801950girl-avatar-cartoon-stock-vector-image-cute-beautiful-eyes-93364804.jpg', '', 0, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (3, 'Hermine', 'Hakobyan', 's@mail.ru', '$2b$10$AMfgOM6g9WuEPAYLEv3cpedoLZ2aOvIiqtEhbVuW4qBpsKDm3ychm', 'c8fy0cs8ke05qtec1597767883860images.jpg', 'c8fy0m8kd7vo3jq', NULL, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (4, 'Arpine', 'Sargsyan', 'd@mail.ru', '$2b$10$j.AolOUQ.VNY6eJ1PSCiyOTVRHcEaom4eQjz9Fb69MHG75fDnnS1K', 'c8fy0cs8ke03u0371597764673267girl_female_woman_avatar-512.png', 'c8fy0f9wkeg53o2h', 1598734262, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (5, 'Marianna', 'Gevorgyan', 'dr@mail.ru', '$2b$10$Pw5gz3p4WnCwauy8nyyBcOkhEugTvIFLqL0j8Jku6du2MpukJFB8y', 'c8fy0cs8ke03wdz61597764784578download.png', '', 0, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (6, 'Hakob', 'Vardanyan', 'AAA@mail.ru', '$2b$10$Zr95.Gmo26ssrq.jk7Mb2.LD5cHB3AvPJeVEgZlp7aeEs91jemlj.', 'c8fy0cs8ke03hsv4159776410403251f6fb256629fc755b8870c801092942.png', 'c8fy06d8kd7wn5au', NULL, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (7, 'Hexush', 'Surenyan', 'f@mail.ru', '$2b$10$Pn6U6Wp.Vy1kAmckPLGgmerZuqUzJjBGpouOUPdRfTddSkZuI6YNe', 'c8fy0cs8ke03yjub1597764885491039_girl_avatar_profile_woman_headband-512 (1).png', 'c8fy06d8kd7wox1p', NULL, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (8, 'Aida', 'Galoyan', 'zf@mail.ru', '$2b$10$KBs3ScBXM5Z520ucD0P87OoXHptnD5wxRTJlRkXh.Dvt/9ESNWiHq', 'c8fy0cs8ke054nqp1597766850097smiling-girl-avatar_102172-32.jpg', 'c8fy0avwkd7x3rk0', 1596060318, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (9, 'Arman', 'Verdyan', 'l15@mail.ru', 'asdfAS!@124', 'c8fy0cs8ke052j011597766750641oscar_boy-512.png', 'c8fy0cw8kdfv2ogy', 1596540638, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (10, 'Minas', 'Minasyan', 'rt@mail.ru', '$2b$10$FE.9tTTaDeJLRisKYvZt9uw5gj6u588x5kbiwnS.m/unfGWvazpFG', 'c8fy0cs8ke05608x1597766912961cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png', 'c8fy09kgkddj6ydq', NULL, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (11, 'Hayk', 'Hovhannisyan', 'x@mail.ru', '$2b$10$VibEQvVIhXxAsoeSblPQluql94a1QY7FoR965HqjPiX2.wFlWCH8y', 'c8fy0cs8ke059p10159776708504491-512.png', 'c8fy0fbskdf1av2z', NULL, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (12, 'Armen', 'Verdyan', 'l13@mail.ru', '$2b$10$mVn.cTE6Nf1akaBSGWhZpuFSRyAIHfOjeQBNM12QTwgFsU0wU/VAC', 'c8fy0cs8ke05b1yl1597767148461download0.png', 'c8fy0bf0kdfvpi5i', 1596541702, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (13, 'Anahit', 'Verdyan', 'l35@mail.ru', '$2b$10$kKJP9wh/iLk9Xl1Dv6L.4e662HIs9xbPBXJ.hMv8g2o3xlL6XLnKu', 'ud0uh3qwkgcc49t11602857748133c8fy0cs8ke05ryur1597767937587Anahit.png', 'ud0uh9dkkh3an3fo', 1604487853, 'c8fy07xskebap7s2159844133520211.png', 'c8fy07xskebasygz159844150976312.jpg', 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (14, 'Ani', 'Samsonyan', 'rtr@mail.ru', '$2b$10$Jk/s70gJfcnQS7xofojWleiMaOdPcsfSoVMUHl2OxuSa/OYYUlJEe', 'c8fy0cs8ke05cjiz1597767217884cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-cute-vector-girl-avatar-icon-happy-woman-red-lips-pretty-lady-108313736.jpg', 'ud0uh7ewkgkemkua', 1603345690, NULL, NULL, 0, 0, 1, 1, 1);
+INSERT INTO `users` VALUES (15, 'Aram', 'Hakobyan', 'ar@mail.ru', '$2b$10$tNtZztpyYUyZMm8LJWHLUOYFwvXJlSDRXQzXTkmdcG0rMExdHBnuC', 'c8fy0cs8ke05dqqm1597767273886Boy-Avatar-Transparent-Images.png', '', 0, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (16, 'Serine', 'Avagyan', 'qw@mail.ru', '$2b$10$2nDKx5e0U9AdWStCERXpjOPLyoCyF5CTF3wiDf.ddtTCj7KFRTmay', 'c8fy0cs8ke05f4j71597767338419woman-girl-female-cartoon-avatar-icon_25030-13347.jpg', 'c8fy0ihckdj8ggnl', 1596744514, NULL, NULL, 0, 0, 0, 1, 1);
+INSERT INTO `users` VALUES (17, 'Dina', 'Harutyunyan', 'ddt@mail.ru', '$2b$10$6Wssuo66.nhfZLyChLo4DeN0jWWDZb4dwJS/i.8QfcSMzJ.intm6.', 'c8fy0cs8ke05gv5u1597767419586downloadgg.png', '', 0, NULL, NULL, 0, 0, 0, 1, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

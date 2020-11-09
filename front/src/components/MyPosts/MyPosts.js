@@ -15,6 +15,10 @@ function MyPosts(props) {
         props.dispatch(myPosts());
     }, []);
 
+    if (props.posts.postPhotos === undefined) {
+        return <ProfileHeader router={props.history} />
+    }
+    
     return (
         <div className="container">   
             <ProfileHeader router={props.history} />

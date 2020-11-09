@@ -59,9 +59,11 @@ function SearchComponent(props) {
                             >
                                     {
                                         item.isLoading && (
-                                            <span   className="spinner-border spinner-border-sm" 
-                                                    role="status" 
-                                                    aria-hidden="true">
+                                            <span   
+                                                className="spinner-border spinner-border-sm" 
+                                                role="status" 
+                                                aria-hidden="true"
+                                            >
                                             </span>
                                         )
                                     }
@@ -78,7 +80,8 @@ function SearchComponent(props) {
                                             <span   
                                                 className="spinner-border spinner-border-sm" 
                                                 role="status" 
-                                                aria-hidden="true">
+                                                aria-hidden="true"
+                                            >
                                             </span>
                                         )
                                     }
@@ -95,7 +98,8 @@ function SearchComponent(props) {
                                             <span   
                                                 className="spinner-border spinner-border-sm" 
                                                 role="status" 
-                                                aria-hidden="true">
+                                                aria-hidden="true"
+                                            >
                                             </span>
                                         )
                                     }
@@ -109,8 +113,12 @@ function SearchComponent(props) {
 
                         return  <div 
                                     key={index} 
-                                    className="col-md-4 m-3 mx-auto text-center">
-                                    <img src={"http://localhost:5000/" + item.photo} alt="" />
+                                    className="col-md-3 m-3 mx-auto text-center"   // col-md-4
+                                >
+                                    <img 
+                                        src={"http://localhost:5000/" + item.photo} 
+                                        alt="" 
+                                    />
                                     <h4>{item.name} {item.surname}</h4>
                                     {addFriendButton}
                                     <Link 

@@ -2,14 +2,13 @@ const model = require('../lib/model');
 const uniqid = require("uniqid");
 const bcrypt = require('bcrypt');
 
-let rand = Math.floor((Math.random() * 100) + 54);
-
 class UserController {
     add(req, res) {
         model.findAll("users", { login: req.body.login })
             .then(r => {
+                let rand = Math.floor((Math.random() * 100) + 54);
                 let host = req.get('host');
-                let link = `http://${req.get('host')}/verify?id=${rand}`;
+                let link = `http://${req.get('host')}/verify?mail=${req.body.login}&&rand=${rand}&&id=${rand}`;
 
                 let mailOptions = {
                     from: 'socialnet130',
@@ -28,7 +27,7 @@ class UserController {
                         if (err) throw err;
                         req.body.password = hash;
                         req.body.token = uniqid();
-                        model.add("users", { login: req.body.login, password: req.body.password, name: req.body.name, surname: req.body.surname })
+                        model.add("users", { login: req.body.login, password: req.body.password, name: req.body.name, surname: req.body.surname, verification_satus: 0 })
                         res.send({ success: "You have been signed up successfully" });
                     });
                 } else {
@@ -39,14 +38,19 @@ class UserController {
 
     verifyEmail(req, res) {
         let host = req.get('host');
+        // console.log(req.query.mail);
 
         if ((req.protocol+"://"+req.get('host'))==("http://"+host)) {
             console.log("Domain is matched. Information is from Authentic email");
-            if(req.query.id == rand) {
+            if (req.query.id == req.query.rand) {
                 // console.log("email is verified");
-                res.end("<h1>Email is been Successfully verified</h1>");
+                model.findAll("users", { login: req.query.mail })
+                    .then(r => {
+                        model.update("users", { login: req.query.mail }, { verification_satus: 1 })
+                    })
+                res.end(`<h1>Email ${req.query.mail} is been Successfully verified</h1>`);
             } else {
-                console.log("email is not verified");
+                // console.log("email is not verified");
                 res.end("<h1>Bad Request</h1>");
             }
         } else {
@@ -57,9 +61,14 @@ class UserController {
     login(req, res) {
         model.findAll("users", { login: req.body.login })
             .then(r => {
+                if (r[0].verification_satus == 0) {
+                    return res.send({ error: "Your login is not verified!!!" });
+                }
+
                 if (r.length == 0) {
                     return res.send({ error: "Your login is wrong!!!!" });
                 }
+                
                 else {
                     r = r[0];
                     bcrypt.compare(req.body.password, r.password, (err, result) => {

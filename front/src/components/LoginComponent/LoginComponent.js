@@ -79,7 +79,7 @@ function Login(props) {
                                     className="btn login_btn" 
                                     onClick={() => props.dispatch(validateLogin(props.history, props.user.signin ))}
                                     // disabled={!props.user.signin.login}
-                                    disabled={
+                                    disabled = {
                                         (props.user.signin.login === '' || props.user.signin.password === '') 
                                             ? 
                                                 true 

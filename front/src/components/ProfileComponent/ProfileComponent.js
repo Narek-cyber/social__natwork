@@ -13,12 +13,14 @@ function Profile(props) {
 
     let photo = null;
     
-    if (props.user.profile.photo !== "") {
-        photo = "http://localhost:5000/" + props.user.profile.photo;
+
+
+    if (props.user.profile.photo === null) {
+        photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg"
     }
 
-    else if(props.user.profile.photo === "") {
-        photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg"
+    else if (props.user.profile.photo !== "") {
+        photo = "http://localhost:5000/" + props.user.profile.photo;
     }
 
     return (

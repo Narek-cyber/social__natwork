@@ -3,7 +3,17 @@ import { connect } from 'react-redux';
 import ProfileHeader from '../ProfileHeader';
 import './Notification.css';
 
+
+
+
 function Notification(props) {
+    if (props.friends.notifications === undefined 
+        || props.posts.notifications === undefined 
+        || props.other.notifications === undefined 
+        || props.user.notifications === undefined) {
+        return <ProfileHeader router={props.history} />
+    }
+    
     return (
         <div className="container">
             <ProfileHeader router={props.history} />

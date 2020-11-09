@@ -48,10 +48,12 @@ function AddPost(props) {
                 method="post" 
                 encType="multipart/form-data" 
                 className="p1 form-group" 
-                onChange={fileHandler1}>
+                onChange={fileHandler1}
+            >
                 <input 
                     type="file" 
-                    name="nkar" />
+                    name="nkar" 
+                />
                 <button 
                     type="button"
                     className="btn btn-success btn-sm d-block mt-3"

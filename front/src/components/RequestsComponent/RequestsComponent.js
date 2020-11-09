@@ -40,7 +40,8 @@ function Requests(props) {
                                                     <span   
                                                         className="spinner-border spinner-border-sm" 
                                                         role="status" 
-                                                        aria-hidden="true">
+                                                        aria-hidden="true"
+                                                    >
                                                     </span>
                                                 )
                                             }
@@ -55,7 +56,8 @@ function Requests(props) {
                                                     <span   
                                                         className="spinner-border spinner-border-sm" 
                                                         role="status" 
-                                                        aria-hidden="true">
+                                                        aria-hidden="true"
+                                                    >
                                                     </span>
                                                 )
                                             }

@@ -68,9 +68,11 @@ function Admin(props) {
                                                 >   Blocked
                                                     {
                                                         item.isLoading && (
-                                                            <span   className="spinner-border spinner-border-sm" 
-                                                                    role="status" 
-                                                                    aria-hidden="true">
+                                                            <span   
+                                                                className="spinner-border spinner-border-sm" 
+                                                                role="status" 
+                                                                aria-hidden="true"
+                                                            >
                                                             </span>
                                                         )
                                                     }
@@ -83,9 +85,11 @@ function Admin(props) {
                                             >   
                                                 {
                                                     item.isLoading && (
-                                                        <span   className="spinner-border spinner-border-sm" 
-                                                                role="status" 
-                                                                aria-hidden="true">
+                                                        <span   
+                                                            className="spinner-border spinner-border-sm" 
+                                                            role="status" 
+                                                            aria-hidden="true"
+                                                        >
                                                         </span>
                                                     )
                                                 }
