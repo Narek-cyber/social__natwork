@@ -44,7 +44,7 @@ export function friendship(id) {
             .then(r => {
                 if ('success' in r.data) {
                     dispatch(requestSent(id));
-                    dispatch(showNote(r.data.notification));
+                    dispatch(showNote(r.data.r));
                 } else if ('error' in r.data) {
                     dispatch(showError5(r.data.error));
                 }
@@ -88,7 +88,7 @@ export function rejectFriend(index, id) {
         axios.post("http://localhost:5000/friend/reject", { token: sessionStorage.currentUser, id })
             .then(r => {
                 dispatch(rejectRequestsList(index));
-                dispatch(showNoteReject(r.data.notification));
+                dispatch(showNoteReject(r.data.r));
             }) 
     }
 }
@@ -106,7 +106,8 @@ export function acceptFriend(index, id) {
         axios.post("http://localhost:5000/friend/accept", { token: sessionStorage.currentUser, id })
             .then(r => {
                 dispatch(updateRequestsList(index));
-                dispatch(showNoteAccept(r.data.notification));
+                // console.log(r.data.r);
+                dispatch(showNoteAccept(r.data.r));
             }) 
         
     }
@@ -125,7 +126,7 @@ export function removeFriend(index, id) {
         axios.post("http://localhost:5000/friend/remove", { token: sessionStorage.currentUser, id })
             .then(r => {
                 dispatch(removeFriends(index));
-                dispatch(showNoteDelete(r.data.notification));
+                dispatch(showNoteDelete(r.data.r));
             }) 
     }
 }
@@ -162,8 +163,9 @@ export function unfriend(index, id) {
         dispatch({ type: 'unfriend', payload: id });
         axios.post("http://localhost:5000/friend/unfriend", { token: sessionStorage.currentUser, id })
             .then(r => {
+                // console.log(r.data.r)
                 dispatch(unfriendFriends(index, id));
-                dispatch(showNoteUnfriend(r.data.notification));
+                dispatch(showNoteUnfriend(r.data.r));
             })
     }
 }

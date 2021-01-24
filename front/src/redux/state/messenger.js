@@ -3,6 +3,6 @@ export default {
     friends: [],
     currentUser: -1,
     text: "",
-    index: '',
+    index: 0,
     searchText: ""
 }

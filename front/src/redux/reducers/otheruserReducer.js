@@ -195,6 +195,17 @@ function otheruserReducer(state=otheruserState, action) {
         return temp;
     }
 
+
+    if (action.type === 'openUserMessanger1') {
+        // alert('ok');
+        return temp;
+    }
+
+    if (action.type === 'chatRoomUsers') {
+        temp.chatRoomUsers = action.data;
+        return temp;
+    }
+
     return temp;
 }
 

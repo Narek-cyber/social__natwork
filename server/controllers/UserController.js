@@ -8,7 +8,7 @@ class UserController {
             .then(r => {
                 let rand = Math.floor((Math.random() * 100) + 54);
                 let host = req.get('host');
-                let link = `http://${req.get('host')}/verify?mail=${req.body.login}&&rand=${rand}&&id=${rand}`;
+                let link = `http://${req.get('host')}/verify?mail=${req.body.login}&rand=${rand}&id=${rand}`;
 
                 let mailOptions = {
                     from: 'socialnet130',
@@ -115,7 +115,7 @@ class UserController {
 
     profile(req, res) {
         let token = req.body.token;
-            
+
         let user = model.findAll("users", { token })
                         .then(r => {
                             if (r.length == 0){

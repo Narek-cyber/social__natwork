@@ -4,6 +4,7 @@ function messengerReducer(state=messangerState, action) {
     let temp = {...state};
     
     if (action.type === 'updateMessangerFriends') {
+        // temp.friends = [...temp.friends, ...action.data];
         temp.friends = action.data;
         return temp;
     }
@@ -15,15 +16,21 @@ function messengerReducer(state=messangerState, action) {
 
     if (action.type === "showMessages") {
         temp.messages = action.data;
-        document.querySelector(".messages").scrollBy(0, 10000000000000);
+        // document.querySelector(".messages").scrollBy(0, 10000000000000);
         return temp;
     }
 
     if (action.type === "startChat") {
         temp.currentUser = action.id;
+        action.id 
+            ? 
+                action.props.history.push(`/profile/messenger/${action.id}`) 
+            :   
+                action.props.history.push(`/profile/messenger`);
+
         temp.index = action.index;
         action.socket.emit("startChat", { id: action.id, me: sessionStorage.currentUser});
-        action.props.history.push(`/profile/messenger/${action.id}`);
+        
         return temp;
     } else if (action.type === 'sendChatMessages') {
         temp.messages = action.data.messages;
@@ -51,7 +58,20 @@ function messengerReducer(state=messangerState, action) {
 
     if (action.type === 'reloadMessenger') {
         action.props.history.push('/profile/messenger')
-        window.location.reload();
+        temp.currentUser = '';
+        temp.messages = [];
+        temp.index = '';
+        temp.searchText = '';
+        temp.text = '';
+        // window.location.reload();
+        return temp;
+    }
+
+    if (action.type === 'addUserFromFriendList') {
+        let hasId = temp.friends.some(item => item.id === action.user.id);
+        if (hasId === false) {
+            temp.friends.unshift(action.user);
+        }
         return temp;
     }
 

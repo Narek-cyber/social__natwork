@@ -191,6 +191,25 @@ module.exports = {
         })
     },
 
+    findChatRoomUsers(id){
+        return new Promise((resolve, reject)=>{
+            let command = `
+                            SELECT * FROM users 
+                            WHERE id IN (
+                                SELECT user1 FROM chatroom 
+                                WHERE user2 = '${id}'
+                                UNION
+                                SELECT user2 FROM chatroom
+                                WHERE user1 = '${id}'
+                            )
+                        `;
+            connection.query(command, (err, data) => {
+                if(err) reject(err);
+                resolve(data);
+            })
+        })
+    },
+
     findAll(table, obj){
         return new Promise((resolve, reject) => {
             let command = `SELECT * FROM ${table} WHERE `

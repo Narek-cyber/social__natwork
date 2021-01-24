@@ -51,20 +51,44 @@ class OtherUserController {
                         model.findAll("users", { token })
                             .then(a => {
                                 a = a[0];
-                                model.add("posts", { text: rr[index].text, content: rr[index].content, user_id: a.id, post_status: 1  })
-                                if (a.id == id) {
-                                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                                                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                                                + new Date().toJSON().slice(0, 10).slice(0, 4);
-                                    res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց իր հրապարակումով - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                                    // res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց իր հրապարակումով - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                                } else {
-                                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                                                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                                                + new Date().toJSON().slice(0, 10).slice(0, 4);                      
-                                    res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց ${r.name} ${r.surname} -ի հրապարակումով - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                                    // res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց ${r.name} ${r.surname} -ի հրապարակումով - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                                }
+
+                                let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                                + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                                model.add("posts", {
+                                    text: rr[index].text, 
+                                    content: rr[index].content, 
+                                    user_id: a.id, 
+                                    post_status: 1,
+                                    time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                                })
+
+                                model.findAll('posts', { user_id: a.id }) 
+                                    .then(t => {
+                                        // console.log(t);
+                                        if (a.id == id) {
+                                            model.update("posts", { id: t[t.length - 1].id }, { notification: `Դուք կիսվեցիք ձեր հրապարակումով -`, note_type: 2 })
+                                        } else {
+                                            model.update("posts", { id: t[t.length - 1].id }, { notification: `Դուք կիսվեցիք ${r.name} ${r.surname} -ի հրապարակումով -`, note_type: 3 })
+                                        }
+                                    })
+
+                                // console.log(rr[rr.length - 1].id);
+
+                                // if (a.id == id) {
+                                //     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                                //                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                                //                 + new Date().toJSON().slice(0, 10).slice(0, 4);
+                                //     res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց իր հրապարակումով - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                                //     // res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց իր հրապարակումով - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                                // } else {
+                                //     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                                //                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                                //                 + new Date().toJSON().slice(0, 10).slice(0, 4);                      
+                                //     res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց ${r.name} ${r.surname} -ի հրապարակումով - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                                //     // res.send({ success: 'post was shared', notification: `${a.name} ${a.surname} -ը կիսվեց ${r.name} ${r.surname} -ի հրապարակումով - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                                // }
                                 
                             })
                     })
@@ -90,7 +114,35 @@ class OtherUserController {
                 res.send(r);
             })
     }
+
+
+    chatRoom(req, res) {
+        let token = req.body.token;
+        model.findAll("users", { token })
+            .then(r => {
+                r = r[0]
+                let obj = {
+                    user1: r.id,
+                    user2: req.params.id
+                }
+                model.add("chatroom", obj)
+                    .then(r => {
+                        res.send({ success: 'ok' })
+                    })
+            })
+    }
+
+    chatRoomUsers(req, res) {
+        let token = req.body.token;
+        model.findAll("users", { token })
+            .then(r => {
+                r = r[0];
+                model.findChatRoomUsers(r.id)
+                    .then(r => {
+                        res.send(r);
+                    })               
+            })
+    }
 } 
 
 module.exports = new OtherUserController();
-

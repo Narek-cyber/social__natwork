@@ -47,6 +47,8 @@ function userReducer (state=userState, action) {
         temp.profile.name = action.user.name;
         temp.profile.surname = action.user.surname;
         temp.profile.photo = action.user.photo;
+        temp.myId = action.id;
+        // console.log(action.id);
         return temp;
     }
 
@@ -134,8 +136,9 @@ function userReducer (state=userState, action) {
     }
 
     if (action.type === 'showNoteUpload') {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
         return temp;
     }
 

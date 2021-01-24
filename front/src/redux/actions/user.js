@@ -8,8 +8,7 @@ export function GetProfile(router, anotherAction = null) {
             .then(r => {
                 if ("user" in r.data) {
                     sessionStorage.currentUser = r.data.token;
-
-                    dispatch(updateProfile(r.data.user));
+                    dispatch(updateProfile(r.data.user, r.data.user.id));
 
                     if (anotherAction) {
                         dispatch(anotherAction());
@@ -23,10 +22,11 @@ export function GetProfile(router, anotherAction = null) {
     }
 }
 
-export function updateProfile(user) {
+export function updateProfile(user, id) {
     return {
         type: "updateProfile",
-        user
+        user,
+        id
     }
 }
 
@@ -318,7 +318,7 @@ export function passwordChange(props, data) {
             axios.post('http://localhost:5000/changeYourPassword',  { data, token })
                 .then(r => {
                     if ("success" in r.data) {
-                        sessionStorage.currentUser = r.data.token;
+                        sessionStorage.currentUser = r.data.r.token;
                         // props.push("/login");
                         dispatch(showError3(r.data.success));
                         dispatch(showSuccess3());
@@ -351,7 +351,7 @@ export function changeInputSettingsPassEnter(props, e, data) {
                 axios.post('http://localhost:5000/changeYourPassword',  { data, token })
                     .then(r => {
                         if ("success" in r.data) {
-                            sessionStorage.currentUser = r.data.token;
+                            sessionStorage.currentUser = r.data.r.token;
                             // props.push("/login");
                             dispatch(showError3(r.data.success));
                             dispatch(showSuccess3());
@@ -372,8 +372,8 @@ export function upload() {
         
         axios.post('http://localhost:5000/upload', form)
             .then(r => {
-                // console.log(r);
-                dispatch(showNoteUpload(r.data.notification));
+                console.log(r.data.r);
+                dispatch(showNoteUpload(r.data.r));
                 dispatch(savePhoto());
             })
         }

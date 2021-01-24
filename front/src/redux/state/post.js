@@ -11,5 +11,6 @@ export default {
     text: "",
     comments: [],
     notification: "",
-    notifications: []
+    notifications: [],
+    postPhotosNote: []
 }

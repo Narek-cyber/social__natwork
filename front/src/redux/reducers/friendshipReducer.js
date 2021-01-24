@@ -9,38 +9,43 @@ function friendshipReducer(state=friendsState, action) {
     }
 
     if (action.type === "showNote") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
     if (action.type === "showNoteCancel") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
     if (action.type === "showNoteUnfriend") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
     if (action.type === "showNoteAccept") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
     if (action.type === "showNoteReject") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
     if (action.type === "showNoteDelete") {
-        temp.notification = action.text;
-        temp.notifications.push(temp.notification);
+        temp.notifications = action.text;
+        // temp.notification = action.text;
+        // temp.notifications.push(temp.notification);
         return temp;
     }
 
@@ -143,7 +148,7 @@ function friendshipReducer(state=friendsState, action) {
     }
 
     if (action.type === 'unfriend') {
-        console.log(action.payload);
+        // console.log(action.payload);
         let obj = temp.searchedUsers.filter(item => item.id === action.payload);
         obj[0].isLoading = true;
         return temp;

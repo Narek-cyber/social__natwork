@@ -5,6 +5,7 @@ import { GetProfile } from '../../redux/actions/user';
 import ProfileHeader from '../ProfileHeader';
 import SearchComponent from '../SearchUsersComponent/SearchComponent';
 import { openMyMessanger } from '../../redux/actions/user';
+import { openUserMessanger1 } from '../../redux/actions/otheruser';
 
 function Profile(props) {
     useEffect(() => {       
@@ -13,7 +14,7 @@ function Profile(props) {
 
     let photo = null;
     
-
+    // console.log(props.user.notifications);
 
     if (props.user.profile.photo === null) {
         photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg"
@@ -41,7 +42,7 @@ function Profile(props) {
                 <button 
                     style={{ fontSize: '15px' }} 
                     className="btn btn-sm mt-3 btn-primary messanger"
-                    onClick={() => props.dispatch(openMyMessanger(props.history))}
+                    onClick={() => props.dispatch(openUserMessanger1(props.history, props.user.myId))}
                 >   Messanger 
                     <i className="fa fa-envelope ml-1" aria-hidden="true"></i>
                 </button>   

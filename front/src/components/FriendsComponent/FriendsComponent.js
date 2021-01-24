@@ -34,10 +34,13 @@ function Friends(props) {
            {friends}
            <div className="row d-flex" id="result1">
                 {
-                    props.friends.myfriends.map((item, index) => {
+                    props.friends.myfriends
+                    .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+                    .map((item, index) => {
                         if (item.photo === '') {
                             item.photo = 'c8fy0voke0ep4pi1597782921750default-avatar.jpg';
                         }
+                        
                         return <div key={index} className="col-md-3 pt-4 text-center">
                                     <img src={"http://localhost:5000/" + item.photo} alt="" />
                                     <h4>{item.name} {item.surname}</h4>

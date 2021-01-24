@@ -54,11 +54,10 @@ class SettingsController {
 
                             model.findAll("users", { token })
                                     .then(rr => {
-                                        let token = uniqid();
                                         let now = Math.floor((new Date().getTime())/1000);
-                                        model.update("users",{ id: r.id }, { active_time: now, token: token, password: req.body.data.newPassword })
+                                        model.update("users", { id: r.id }, { active_time: now, token: token, password: req.body.data.newPassword })
                                             .then(a => {
-                                                res.send({ success: "Password -ը հաջողությամբ թարացվեց" });
+                                                res.send({ success: "Password -ը հաջողությամբ թարմացվեց", r });
                                             })
                                     })
                         })
@@ -73,12 +72,29 @@ class SettingsController {
             .then(r => {
                  if(r.length > 0) {
                     r = r[0];
+                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(0, 4);
+
                     model.update("users", { id: r.id }, { photo: req.file.filename })
                         .then(rr => {
-                            let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                                        + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                                        + new Date().toJSON().slice(0, 10).slice(0, 4);
-                            res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը փոխեց իր գլախվոր էջի նկարը - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                            model.add('notifications', {
+                                user1: r.id,
+                                notification: `Դուք փոխեցիք ձեր գլխավոր էջի նկարը`,
+                                time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                                note_type: 0,
+                                myphoto: req.file.filename
+                            })
+
+                            model.findAll('notifications', { note_type: 0 })
+                                .then(r => {
+                                    res.send({ success: "OK", r });
+                                })
+
+                            // let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                            //             + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                            //             + new Date().toJSON().slice(0, 10).slice(0, 4);
+                            // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը փոխեց իր գլախվոր էջի նկարը - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
                             // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը փոխեց իր գլախվոր էջի նկարը - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
                         })
                 }

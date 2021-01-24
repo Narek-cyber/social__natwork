@@ -19,9 +19,9 @@
     width: 200px;
 }
 
-/* .messagesComment {
+.messagesComment {
     left: 950px
-} */
+}
 
 .postCarcass {
     margin-top: 30px;
@@ -29,7 +29,7 @@
     border: 1px solid teal;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 

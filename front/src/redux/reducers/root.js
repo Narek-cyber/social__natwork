@@ -5,6 +5,7 @@ import messenger from './messengerReducer';
 import addpost from './postReducer';
 import otheruser from './otheruserReducer';
 import admin from './adminReducer';
+import notification from './notificationReducer';
 
 let root = combineReducers ({ 
     user: user, 
@@ -12,7 +13,8 @@ let root = combineReducers ({
     messages: messenger, 
     posts: addpost, 
     other: otheruser, 
-    adminuser: admin 
+    adminuser: admin,
+    notification: notification 
 });
 
 export default root;

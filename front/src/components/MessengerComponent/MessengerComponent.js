@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './MessengerComponent.css';
 import ProfileHeader from '../ProfileHeader';
@@ -14,29 +15,54 @@ import {
     sendMessage, 
     sendMessageMouse, 
     searchMessenger, 
-    reloadMessenger
+    reloadMessenger,
+    addUserFromFriendList
 } from '../../redux/actions/messenger';
 
+import { goToSettings } from '../../redux/actions/messenger';
+
 import socketIOClient from "socket.io-client";
+import { chatRoomAllUsers } from '../../redux/actions/otheruser';
 const ENDPOINT = "http://127.0.0.1:5000";
 const socket = socketIOClient(ENDPOINT);
 
 function Messenger(props) {
     // let [test, setTest] = useState("----");
+    // let [user, userState] = useState([]);
+
+    const location = useLocation();
 
     useEffect(() => {
-        props.dispatch(GetProfile(props.history, myMessangerFriends));
+        props.dispatch(GetProfile(props.history, chatRoomAllUsers));
+        props.dispatch(AllUsers());
+        // props.dispatch(chatRoomAllUsers());
+
         // props.dispatch(myMessangerFriends());
         socket.on("vekalNamakner", (data) => props.dispatch(showMessages(data)));
         // socket.on("norNamak", (data)=>setTest(data));
         socket.on("norNamak", (data) => props.dispatch(showMessages(data)));
-        props.dispatch(AllUsers());
+
+        let currentPath = location.pathname;
+        let urlId = currentPath.split('/').splice(3)[0];
+        urlId = parseInt(urlId);
+    
+        let user = props.other.chatRoomUsers.find(item => item.id === urlId);
+        let indexUser = props.other.chatRoomUsers.indexOf(user);
+
+        if (urlId !== undefined) {
+            props.dispatch(startChat(urlId, indexUser, socket, props));
+        }
+
+        // userState(user = props.user.allusers.filter(item => item.id === urlId));
+
+        // let userFromMessanger = props.user.allusers.find(item => item.id === urlId)
+        // props.dispatch(addUserFromFriendList(userFromMessanger));
+
     }, []);
 
     let photo = null;
 
-
-    if(props.user.profile.photo === null) {
+    if (props.user.profile.photo === null) {
         photo = "http://localhost:5000/c8fy0voke0ep4pi1597782921750default-avatar.jpg";
     }
 
@@ -48,20 +74,12 @@ function Messenger(props) {
     let name = null;
     let surname = null;
 
-    // if (props.user.allusers[props.messages.index] === undefined) {
-    //     messagePhoto = '';
-    // } else if (props.user.allusers[props.messages.index] !== undefined) {
-    //     messagePhoto = "http://localhost:5000/" + props.user.allusers[props.messages.index].photo;
-    //     name = props.user.allusers[props.messages.index].name + ' ';
-    //     surname = props.user.allusers[props.messages.index].surname;
-    // }
-    
-    if (props.messages.friends[props.messages.index] === undefined) {
+    if (props.other.chatRoomUsers[props.messages.index] === undefined) {
         messagePhoto = '';
-    } else if (props.messages.friends[props.messages.index] !== undefined) {
-        messagePhoto = "http://localhost:5000/" + props.messages.friends[props.messages.index].photo;
-        name = props.messages.friends[props.messages.index].name + ' ';
-        surname = props.messages.friends[props.messages.index].surname;
+    } else if (props.other.chatRoomUsers[props.messages.index] !== undefined) {
+        messagePhoto = "http://localhost:5000/" + props.other.chatRoomUsers[props.messages.index].photo;
+        name = props.other.chatRoomUsers[props.messages.index].name + ' ';
+        surname = props.other.chatRoomUsers[props.messages.index].surname;
     }
     
     return (
@@ -132,8 +150,9 @@ function Messenger(props) {
                             <ul>
                                 {   
                                     // props.user.allusers
-                                    props.messages.friends
-                                    .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+                                    // props.messages.friends.filter(item => !!item)
+                                    // [...user, ...props.messages.friends]
+                                    props.other.chatRoomUsers
                                     .map((item, index) => {
                                         let style = item.id === 
                                         props.messages.currentUser ? 
@@ -143,7 +162,7 @@ function Messenger(props) {
                                             item.photo = 'c8fy0voke0ep4pi1597782921750default-avatar.jpg' 
                                         }
                                         
-                                        return <li  
+                                        return  <li  
                                                     className={style} 
                                                     key={index} 
                                                     onClick={()=>props.dispatch(startChat(item.id, index, socket, props))}
@@ -169,7 +188,9 @@ function Messenger(props) {
                                 <i className="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
                                 <span>Add contact</span>
                             </button>
-                            <button id="settings">
+                            <button 
+                                id="settings" onClick={() => props.dispatch(goToSettings(props.history))}
+                            >
                                 <i className="fa fa-cog fa-fw" aria-hidden="true"></i> 
                                 <span>Settings</span>
                             </button>
@@ -211,7 +232,6 @@ function Messenger(props) {
                                 {
                                     props.messages.messages.map((item, index) => {
                                         let style = item.user2 === props.messages.currentUser ? "sent" : "replies";
-                                        //   let photo = style=="sent" ? item.user2_photo : item.user1_photo;
                                         let photo = style === "sent" ? item.user1_photo : item.user2_photo;
                                         photo = "http://localhost:5000/" + photo
                                         return <li className={style}  key={index}>

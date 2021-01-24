@@ -32,7 +32,7 @@ export function myPosts(data) {
     }
 }
 
-function updatePosts(data) {
+export function updatePosts(data) {
     return {
         type: 'updatePosts',
         data

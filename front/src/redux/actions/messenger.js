@@ -88,3 +88,15 @@ export function reloadMessenger(props) {
         props
     }
 }
+
+export function addUserFromFriendList(user) {
+    return function(dispatch) {
+        dispatch({ type: 'addUserFromFriendList', user})
+    }
+}
+
+export function goToSettings(props) {
+    return function() {
+        props.push(`/profile/settings`);
+    }
+}

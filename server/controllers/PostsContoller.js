@@ -45,11 +45,20 @@ class PostsController {
             .then(r => {
                 if (r.length > 0) {
                     r = r[0];
-                    model.add("posts", { user_id: r.id, text: req.body.text, content: req.file.filename, post_status: 0 })
                     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
                                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
                                 + new Date().toJSON().slice(0, 10).slice(0, 4);
-                    res.send({ success: 'Ok', notification: `${r.name} ${r.surname} -ը նոր հրապարակում կատարեց - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` })
+
+                    model.add("posts", { 
+                        user_id: r.id, 
+                        text: req.body.text, 
+                        content: req.file.filename, 
+                        post_status: 0, 
+                        notification: `Դուք նոր հրապարակում կատարեցիք - `,
+                        time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                        note_type: 1
+                    })
+                    res.send({ success: 'Ok' });
                     // res.send({ success: 'Ok', notification: `${r.name} ${r.surname} -ը նոր հրապարակում կատարեց - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` })
                 }
             })

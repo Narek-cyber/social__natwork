@@ -19,7 +19,7 @@ function ProfileHeader(props) {
                                 to="/profile"
                                 onClick={() => props.dispatch({ type: 'resetSearchInput' })}
                             >   
-                                <i class="fa fa-user-circle-o mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-user-circle-o mr-1" aria-hidden="true"></i>
                                 Profile
                             </Link>
                         </li>
@@ -28,7 +28,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/settings"
                             >
-                                <i class="fa fa-cog mr-1" aria-hidden="true"></i>   
+                                <i className="fa fa-cog mr-1" aria-hidden="true"></i>   
                                 Settings
                             </Link>
                         </li>
@@ -37,7 +37,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/requests"
                             >   
-                                <i class="fa fa-circle mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-circle mr-1" aria-hidden="true"></i>
                                 Requests
                             </Link>
                           </li>
@@ -46,7 +46,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/friends"
                             >   
-                                <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-users mr-1" aria-hidden="true"></i>
                                 Friends
                             </Link>
                         </li>
@@ -55,7 +55,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/addpost"
                             >   
-                                <i class="fa fa-file-image-o mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-file-image-o mr-1" aria-hidden="true"></i>
                                 Add Post
                             </Link>
                         </li>
@@ -64,7 +64,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/myposts"
                             >   
-                                <i class="fa fa-picture-o mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-picture-o mr-1" aria-hidden="true"></i>
                                 My Posts
                             </Link>
                         </li>
@@ -82,7 +82,7 @@ function ProfileHeader(props) {
                                 className="nav-link head" 
                                 to="/profile/notification"
                             >   
-                                <i class="fa fa-envelope-o mr-1" aria-hidden="true"></i>
+                                <i className="fa fa-envelope-o mr-1" aria-hidden="true"></i>
                                 Notification
                             </Link>
                         </li>
@@ -92,7 +92,7 @@ function ProfileHeader(props) {
                                 to="#" 
                                 onClick={() => props.dispatch(logOut(props.router))}
                             >   
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <i className="fa fa-sign-out" aria-hidden="true"></i>
                                 Logout
                             </Link>
                         </li>

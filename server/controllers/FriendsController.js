@@ -2,6 +2,7 @@ const model = require('../lib/model');
 
 class FriendsController {
     friendship(req, res) {
+        let id = req.body.id;
         // console.log(req.body.id);
         model.findAll("users", { token: req.body.token })
             .then(r => {
@@ -16,11 +17,35 @@ class FriendsController {
                         user2: req.body.id
                     }
                     model.add("requests", obj)
-                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                                + new Date().toJSON().slice(0, 10).slice(0, 4);
 
-                    res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը ընկերության հայտ ներկայացրեց - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                    model.findAll("users", { id })
+                        .then(user => {
+                            model.add('notifications', {
+                                user1: r.id,
+                                user2: id,
+                                notification: `Դուք ընկերության հայտ ներկայացրեցիք ${user[0].name} ${user[0].surname} - ին`,
+                                time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                                note_type: 4,
+                                myphoto: r.photo,
+                                otheruserphoto: user[0].photo
+                            })
+                        })
+
+
+                    model.findAll('notifications', { note_type: 4 })
+                        .then(r => {
+                            res.send({ success: "OK", r });
+                        })
+
+                    // let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                    //             + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                    //             + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                    // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը ընկերության հայտ ներկայացրեց - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
                     // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը ընկերության հայտ ներկայացրեց - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
                 }
             })
@@ -49,13 +74,37 @@ class FriendsController {
                     .then(rr => {
                         return  model.remove('requests', { user1: id, user2: r.id })
                     })
-                    .then(rrrr => {
-                        let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                                    + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                                    + new Date().toJSON().slice(0, 10).slice(0, 4);
-                        res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը հաստատեց ընկերության առաջարկը ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                        // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը հաստատեց ընկերության առաջարկը ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
-                    })
+                    let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                    + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                    model.findAll("users", { id })
+                        .then(user => {
+                            model.add('notifications', {
+                                user1: r.id,
+                                user2: id,
+                                notification: `Դուք և ${user[0].name} ${user[0].surname} - ը հիմա ընկերներ եք`,
+                                time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                                note_type: 4,
+                                myphoto: r.photo,
+                                otheruserphoto: user[0].photo
+                            })
+                        })
+
+
+
+                    model.findAll('notifications', { note_type: 4 })
+                        .then(r => {
+                            res.send({ success: "OK", r });
+                        })
+
+                    // .then(rrrr => {
+                    //     let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                    //                 + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                    //                 + new Date().toJSON().slice(0, 10).slice(0, 4);
+                    //     res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը հաստատեց ընկերության առաջարկը ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                    //     // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը հաստատեց ընկերության առաջարկը ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                    // })
             })
     }
     
@@ -67,10 +116,35 @@ class FriendsController {
             .then(r => {
                 r = r[0];
                 model.remove('requests', { user1: id, user2: r.id })
+
                 let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(0, 4);
-                res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը մերժեց ընկերության առաջարկը ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                model.findAll("users", { id })
+                    .then(user => {
+                        model.add('notifications', {
+                            user1: r.id,
+                            user2: id,
+                            notification: `Դուք մերժեցիք ${user[0].name} ${user[0].surname} - ի ընկերության առաջարկը`,
+                            time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                            note_type: 4,
+                            myphoto: r.photo,
+                            otheruserphoto: user[0].photo
+                        })
+                    })
+
+
+
+                model.findAll('notifications', { note_type: 4 })
+                    .then(r => {
+                        res.send({ success: "OK", r });
+                    })
+
+                // let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(0, 4);
+                // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը մերժեց ընկերության առաջարկը ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
                 // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը մերժեց ընկերության առաջարկը ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
             })
     }
@@ -107,10 +181,35 @@ class FriendsController {
                 r = r[0];
                 myId = r.id;
                 model.removeMany(id, myId)
+
                 let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(0, 4);
-                res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է ջնջել - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                model.findAll("users", { id })
+                    .then(user => {
+                        model.add('notifications', {
+                            user1: r.id,
+                            user2: id,
+                            notification: `Դուք ձեր ընկերների ցանկից ջնջեցիք ${user[0].name} ${user[0].surname} - ին`,
+                            time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                            note_type: 4,
+                            myphoto: r.photo,
+                            otheruserphoto: user[0].photo
+                        })
+                    })
+
+
+
+                model.findAll('notifications', { note_type: 4 })
+                    .then(r => {
+                        res.send({ success: "OK", r });
+                    })
+
+                // let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(0, 4);
+                // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է ջնջել - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
                 // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է ջնջել - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
             })
     }
@@ -141,10 +240,34 @@ class FriendsController {
                 r = r[0];
                 myId = r.id;
                 model.removeMany(id, myId)
+
                 let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
-                            + new Date().toJSON().slice(0, 10).slice(0, 4);
-                res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է հեռացրել - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
+                + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                + new Date().toJSON().slice(0, 10).slice(0, 4);
+
+                model.findAll("users", { id })
+                    .then(user => {
+                        model.add('notifications', {
+                            user1: r.id,
+                            user2: id,
+                            notification: `Դուք ձեր ընկերների ցանկից հեռացրեցիք ${user[0].name} ${user[0].surname} - ին`,
+                            time: `${nDate} ${new Date().toTimeString().replace(/ .*/, '')}`,
+                            note_type: 4,
+                            myphoto: r.photo,
+                            otheruserphoto: user[0].photo
+                        })
+                    })
+
+
+                model.findAll('notifications', { note_type: 4 })
+                    .then(r => {
+                        res.send({ success: "OK", r });
+                    })
+
+                // let nDate = new Date().toJSON().slice(0, 10).slice(8, 10) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(5, 7) + '/'  
+                //             + new Date().toJSON().slice(0, 10).slice(0, 4);
+                // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է հեռացրել - ${nDate} ${new Date().toTimeString().replace(/ .*/, '')}` });
                 // res.send({ success: "OK", notification: `${r.name} ${r.surname} -ը իր ընկերների ցանկից օգտատիրոջ է հեռացրել - ${new Date().toJSON().slice(0,10).replace(/-/g,'/')} ${new Date().toTimeString().replace(/ .*/, '')}` });
             })
     }

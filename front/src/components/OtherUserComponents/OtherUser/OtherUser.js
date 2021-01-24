@@ -6,10 +6,12 @@ import {
     OtherUserPosts, 
     openOtherSlider, 
     openUserMessanger,
+    openUserMessanger1,
     OtherUserFriends,
     friendship1,
     cancelRequest1,
-    unfriend1
+    unfriend1,
+    chatRoomAllUsers
 } from '../../../redux/actions/otheruser';
 // import { GetProfile } from '../../../redux/actions/user';
 import OtherSlider from '../OtherSlider/OtherSlider';
@@ -33,6 +35,7 @@ function OtherUserProfile(props) {
         props.dispatch(OtherUserPosts(id));
         props.dispatch(OtherUserFriends(id));
         props.dispatch(AllUsers());
+
     }, []);
 
     let photo = null;
@@ -93,7 +96,8 @@ function OtherUserProfile(props) {
                         style={{ fontSize: '15px' }} 
                         className="btn btn-sm mt-3 btn-primary messanger"
                         // onClick={()=>props.dispatch(startChat(id, index, socket, props))}
-                        onClick={() => props.dispatch(openUserMessanger(props.history, id))}
+                        // onClick={() => props.dispatch(openUserMessanger(props.history, id))}
+                        onClick={() => props.dispatch(openUserMessanger1(props.history, id))}
                     >   Messanger 
                         <i className="fa fa-envelope ml-1" aria-hidden="true"></i>
                     </button>

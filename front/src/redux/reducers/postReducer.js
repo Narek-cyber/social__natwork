@@ -12,6 +12,8 @@ function addPostReducer(state=PostState, action) {
         if (action.data[0] === undefined) return temp.current = '';
         temp.postText = "";
         temp.postPhotos = action.data;
+        temp.postPhotosNote = action.data;
+        temp.postPhotosNote = temp.postPhotosNote.filter(item => item.note_type !== 0);
         // temp.current = action.data[0].content;
         return temp;
     }

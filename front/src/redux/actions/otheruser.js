@@ -237,3 +237,35 @@ export function showNoteUnfriend1(text) {
         text
     }
 }
+
+
+
+
+export function openUserMessanger1(props, id) {
+    return function(dispatch) {
+        dispatch({ type:  'openUserMessanger1', payload: id})
+        axios.post(`http://localhost:5000/chatroom/${id}`,  { token: sessionStorage.currentUser, id })
+            .then(r => {
+                // console.log(r.data);
+            })
+
+        props.push(`/profile/messenger/${id}`);
+    }
+}
+
+
+export function chatRoomAllUsers(id) {
+    return function(dispatch) {
+        axios.post(`http://localhost:5000/chatroomusers`, { token: sessionStorage.currentUser })
+            .then(r => {
+                dispatch(chatRoomUsers(r.data));
+            })
+    }
+}
+
+export function chatRoomUsers(data) {
+    return {
+        type:'chatRoomUsers',
+        data
+    }
+}

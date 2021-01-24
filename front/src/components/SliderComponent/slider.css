@@ -101,12 +101,12 @@
     display: flex;
 }
 
-.messagesComment {
-    /* float: left;
+/* .messagesComment {
+    float: left;
     display: flex;
     position: absolute;
-    left: 1200px; */
-}
+    left: 1200px;
+} */
 
 .free {
     width: 24px !important;

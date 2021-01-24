@@ -44,5 +44,6 @@ export default {
     },
     allusers: [],
     notification: "",
-    notifications: []
+    notifications: [],
+    myId: ''
 }

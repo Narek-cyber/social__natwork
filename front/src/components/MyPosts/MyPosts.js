@@ -18,6 +18,8 @@ function MyPosts(props) {
     if (props.posts.postPhotos === undefined) {
         return <ProfileHeader router={props.history} />
     }
+
+    let imgClass = null;
     
     return (
         <div className="container">   
@@ -25,6 +27,11 @@ function MyPosts(props) {
             <div className="row">
                 {
                     props.posts.postPhotos.map((item, index) => {
+                        if (item.post_status === 1) {
+                            imgClass = 'postsImg1 '
+                        } else if (item.post_status === 0) {
+                            imgClass = 'postsImg'
+                        }
                         return <div 
                                     key={index} 
                                     className="col-md-4 mb-5 hb" 
@@ -34,7 +41,7 @@ function MyPosts(props) {
                                         <img    
                                             src={"http://localhost:5000/" + item.content} 
                                             alt="" 
-                                            className="postsImg" 
+                                            className={imgClass} 
                                         />
                                         <p className="text-white">{item.text}</p>
                                     </div>

@@ -70,6 +70,7 @@ const MessagesController = require("./controllers/MessagesController");
 const OtherUserController = require("./controllers/OtherUserController");
 const AdminController = require("./controllers/AdminController");
 const PostsContoller = require("./controllers/PostsContoller");
+const NotificationController = require('./controllers/NotificationController');
 
 
 /* User Controller */ 
@@ -106,6 +107,8 @@ app.post("/user/profile/:id", (req, res) => OtherUserController.OtherUserProfile
 app.post("/otheruser/posts/:id", (req, res) => OtherUserController.OtherUserPosts(req, res));
 app.post("/share/:id", (req, res) => OtherUserController.SharePost(req, res));
 app.post("/otheruser/friends/:id", (req, res) => OtherUserController.OtherUserFriends(req, res));
+app.post("/chatroom/:id", (req, res) => OtherUserController.chatRoom(req, res));
+app.post("/chatroomusers", (req, res) => OtherUserController.chatRoomUsers(req, res));
 
 /* AdminController */
 app.post("/admin/dashboard", (req, res) => AdminController.AdminDashboard(req, res));
@@ -117,7 +120,8 @@ app.post("/user/posts", (req, res) => PostsContoller.UserPosts(req, res));
 app.post("/user/posts/delete", (req, res) => PostsContoller.UserPostsDelete(req, res));
 app.post("/user/myposts", upload.single("nkar"), (req, res) => PostsContoller.UploadMyPosts(req, res));
 
-
+/* NotificationsController */
+app.post("/notifications", (req, res) => NotificationController.ShowNotifications(req, res));
 
 app.get("/", (req, res) => {
     res.send("OK");

@@ -14,5 +14,6 @@ export default {
     notifications: [],
     otherUserFriends: [],
     isLoading: false,
-    error: ""
+    error: "",
+    chatRoomUsers: []
 }
