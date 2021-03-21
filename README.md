@@ -1,7 +1,8 @@
 First, run the development server:
 ```bash
 npm install
-nodemon
+npm run start for fornt-end
+nodemon for back-end 
 ```
 Open [http://localhost:3000](http://localhost:3000) for fornt-end
 and
