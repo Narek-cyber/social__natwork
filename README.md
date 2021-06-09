@@ -1,14 +1,7 @@
-First, run the development server:
-```bash
-npm install
-npm run start for fornt-end
-nodemon for back-end 
-```
-Open [http://localhost:3000](http://localhost:3000) for fornt-end
-and
-Open [http://localhost:5000](http://localhost:5000) for back-end 
+$ cd ../social_natwork_thunk
+$ npm install
 
-with your browser to see the result.
+$ cd ../client
+$ npm install
 
-Database Name - social_narek (social_natwork_thunk\server\sql)
- 
+$ npm run dev

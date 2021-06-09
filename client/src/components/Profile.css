@@ -1,0 +1,70 @@
+.fly>a {
+    display: none;
+    font-size: 30px;
+    float: right;
+}
+
+.menu ul>li>a {
+    color: white;
+}
+
+.head:hover {
+    background: rgb(91, 83, 201);
+    transition: width 2s;
+}
+
+@media screen and (max-width: 992px) {
+    .fly>a {
+        display: block;
+    }
+
+    .dropbtn {
+        display: block;
+        font-size: 60px;
+        color: black;
+        margin-right: 10px;
+        text-transform: uppercase;
+    }
+
+    .fa-bars {
+        margin-bottom: 10px;
+        color: #f1f1f1;
+    }
+
+    .fly {
+        position: relative;
+        display: inline-block;
+        width: 80px;
+        margin-top: -7px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 260px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: -83px;
+        top: 40px;
+    }
+
+    .menu ul>li>a {
+        color: black;
+        padding: 12px 75px;
+        text-decoration: none;
+        display: block;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu ul>li>a:hover {
+        background-color: #58BA2E;
+    }
+
+    .fly:hover .menu {
+        display: block;
+    }
+}

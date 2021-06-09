@@ -1,0 +1,40 @@
+.profile-pic {
+    border-radius: 50%;
+    width: 198px;
+    height: 198px;
+    object-fit: cover;
+}
+
+.card {
+    width: 200px;
+    height: 260px;
+}
+
+.result {
+    background: yellowgreen;
+    height: 1600px;
+}
+
+.messanger {
+    width: 200px;
+}
+
+.messagesComment {
+    left: 950px
+}
+
+.postCarcass {
+    margin-top: 30px;
+    /* padding-top: 30px; */
+    border: 1px solid teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.friendsCarcass {
+    border: 1px solid brown;
+    margin-bottom: 42px;
+}
+
